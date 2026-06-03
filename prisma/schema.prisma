@@ -1,0 +1,99 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./backend/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  price       Float
+  imageUrl    String?
+  category    String
+  available   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("products")
+}
+
+model DeliveryPackage {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  price       Float
+  minGuests   Int?
+  maxGuests   Int?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  bookings Booking[]
+
+  @@map("delivery_packages")
+}
+
+model Inquiry {
+  id           String        @id @default(cuid())
+  firstName    String
+  lastName     String
+  email        String
+  phone        String?
+  eventDate    DateTime
+  eventAddress String
+  guestCount   Int?
+  message      String?
+  status       InquiryStatus @default(PENDING)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@map("inquiries")
+}
+
+model Booking {
+  id                String          @id @default(cuid())
+  firstName         String
+  lastName          String
+  email             String
+  phone             String?
+  eventDate         DateTime
+  eventAddress      String
+  guestCount        Int?
+  status            BookingStatus   @default(PENDING)
+  totalPrice        Float
+  depositPaid       Boolean         @default(false)
+  paidInFull        Boolean         @default(false)
+  notes             String?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  deliveryPackage   DeliveryPackage? @relation(fields: [deliveryPackageId], references: [id])
+  deliveryPackageId String?
+
+  @@map("bookings")
+}
+
+model BlockedDate {
+  id     String   @id @default(cuid())
+  date   DateTime @unique
+  reason String?
+
+  @@map("blocked_dates")
+}
+
+enum InquiryStatus {
+  PENDING
+  CONTACTED
+  CONVERTED
+  CLOSED
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
