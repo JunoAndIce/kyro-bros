@@ -3,8 +3,6 @@ import { stripe } from '@/prisma/backend/stripe'
 import { prisma } from '@/prisma/backend/prisma'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(req: NextRequest) {
   const body      = await req.text()
   const signature = req.headers.get('stripe-signature')
@@ -35,6 +33,7 @@ export async function POST(req: NextRequest) {
         data:  { status: 'CONFIRMED', depositPaid: true },
       })
 
+      const resend = new Resend(process.env.RESEND_API_KEY)
       await resend.emails.send({
         from:    'Kyro Bros <onboarding@resend.dev>',
         to:      booking.email,

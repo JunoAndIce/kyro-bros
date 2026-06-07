@@ -4,8 +4,6 @@ import { prisma } from '@/prisma/backend/prisma'
 import { Resend } from 'resend'
 import levenshtein from 'fast-levenshtein'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 function normalize(str: string) {
   return str.toLowerCase().trim().replace(/\s+/g, ' ')
 }
@@ -90,6 +88,7 @@ export async function submitInquiry(
       },
     })
 
+    const resend = new Resend(process.env.RESEND_API_KEY)
     await resend.emails.send({
       from:    'Kyro Bros <onboarding@resend.dev>',
       to:      email,
