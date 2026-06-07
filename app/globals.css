@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bulma-danger-h: 344;
+  --bulma-danger-s: 100%;
+  --bulma-danger-l: 34%;
 }
 
 @theme inline {
@@ -43,4 +46,77 @@ html[data-theme="light"] body {
 html[data-theme="dark"] body {
   background: #0a0a0a;
   color: #ededed;
+}
+
+.hero-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-img {
+  object-fit: cover;
+}
+
+.hero-fade-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to bottom, transparent, #ffffff);
+  z-index: 1;
+}
+
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.navbar-transparent {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.navbar.is-fixed-top {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.is-fixed-top .navbar-menu {
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+@media screen and (max-width: 1023px) {
+  .navbar.is-fixed-top .navbar-menu {
+    display: block !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .navbar.is-fixed-top .navbar-menu.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.navbar.is-fixed-top.navbar-transparent .navbar-menu {
+  background-color: transparent !important;
+}
+
+.navbar.is-fixed-top.is-light .navbar-menu {
+  background-color: var(--bulma-light) !important;
+}
+
+.navbar.is-fixed-top.is-dark .navbar-menu {
+  background-color: var(--bulma-dark) !important;
+}
+
+.type-title {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 800 !important;
+  text-transform: uppercase;
 }

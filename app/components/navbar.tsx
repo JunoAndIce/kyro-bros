@@ -1,26 +1,105 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import kyroLogo from '@/public/KYROANDBROS.png'
-import { Button } from '@/components/ui/button'
 import ThemeToggle from '@/app/components/ThemeToggle'
+import { useTheme } from '@/app/components/ThemeProvider'
+
+const lineBase: React.CSSProperties = {
+  fill: 'none',
+  transition: 'stroke-dasharray 400ms, stroke-dashoffset 400ms',
+  stroke: 'currentColor',
+  strokeWidth: 5.5,
+  strokeLinecap: 'round',
+}
+
+const hamStyles = {
+  inactive: {
+    top:    { ...lineBase, strokeDasharray: '40 82' },
+    middle: { ...lineBase, strokeDasharray: '40 111' },
+    bottom: { ...lineBase, strokeDasharray: '40 161' },
+  },
+  active: {
+    top:    { ...lineBase, strokeDasharray: '17 82',  strokeDashoffset: '-62' },
+    middle: { ...lineBase, strokeDasharray: '40 111', strokeDashoffset: '23' },
+    bottom: { ...lineBase, strokeDasharray: '40 161', strokeDashoffset: '-83' },
+  },
+}
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const { theme } = useTheme()
+  const paths = menuOpen ? hamStyles.active : hamStyles.inactive
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const bg = (scrolled || menuOpen) ? (theme === 'dark' ? 'is-dark' : 'is-light') : 'navbar-transparent'
 
   return (
-    <nav className='bg-blue-300 px-4 py-8 flex'>
-        <Image alt="main logo of the Kyro and Bro's enterprise" src={kyroLogo} className='sm:w-96 lg:w-lg'></Image>
-        {/* <ul className="gap-6 text-lg font-medium text-gray-mb-8 items-center ml-12">
-          <li>Home</li>
-          <li>Bookings</li>
-          <li>Products</li>
-          <li>Services</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-        </ul> */}
-        <ThemeToggle />
+    <nav className={`navbar is-fixed-top ${bg}`} role="navigation" aria-label="main navigation">
+      <div className="navbar-brand">
+        <Link href="/" className="navbar-item hover:!bg-transparent focus:!bg-transparent active:!bg-transparent">
+          <Image
+            alt="Kyro and Bros logo"
+            src={kyroLogo}
+            className="cursor-pointer"
+            style={{ maxHeight: '3rem', width: 'auto' }}
+          />
+        </Link>
 
-        <Button variant="outline" className='ml-auto rounded-3xl' size="icon">Button</Button>
-      </nav>
+        <a
+          role="button"
+          className={`navbar-burger is-hidden-desktop${menuOpen ? ' is-active' : ''}`}
+          aria-label="menu"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen(prev => !prev)}
+          style={{ width: 'auto', height: 'auto', display: 'flex', alignItems: 'center' }}
+        >
+          <svg
+            style={{
+              cursor: 'pointer',
+              userSelect: 'none',
+              WebkitTapHighlightColor: 'transparent',
+              transition: 'transform 400ms',
+              transform: menuOpen ? 'rotate(45deg)' : 'none',
+            }}
+            viewBox="0 0 100 100"
+            width="40"
+          >
+            <path style={paths.top}    d="m 70,33 h -40 c 0,0 -6,1.368796 -6,8.5 0,7.131204 6,8.5013 6,8.5013 l 20,-0.0013" />
+            <path style={paths.middle} d="m 70,50 h -40" />
+            <path style={paths.bottom} d="m 69.575405,67.073826 h -40 c -5.592752,0 -6.873604,-9.348582 1.371031,-9.348582 8.244634,0 19.053564,21.797129 19.053564,12.274756 l 0,-40" />
+          </svg>
+        </a>
+      </div>
+
+      <div className={`navbar-menu${menuOpen ? ' is-active' : ''}`}>
+        <div className="navbar-start">
+          <Link href="/" className="navbar-item" onClick={() => setMenuOpen(false)}>Rentals</Link>
+          <Link href="/bookings" className="navbar-item" onClick={() => setMenuOpen(false)}>Services</Link>
+          <Link href="/products" className="navbar-item" onClick={() => setMenuOpen(false)}>Packages</Link>
+          <Link href="/about" className="navbar-item" onClick={() => setMenuOpen(false)}>About Us</Link>
+          <Link href="/contact" className="navbar-item" onClick={() => setMenuOpen(false)}>Contact Us</Link>
+        </div>
+
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <ThemeToggle />
+          </div>
+          <div className="navbar-item">
+            <Link href="/bookings" onClick={() => setMenuOpen(false)}>
+              <button className="button is-link">Book Now</button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </nav>
   )
 }

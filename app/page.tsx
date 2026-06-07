@@ -1,19 +1,13 @@
-import InquiryForm from '@/app/components/InquiryForm'
 import Navbar from '@/app/components/navbar'
+import Hero from '@/app/components/hero'
+import Banner from '@/app/components/banner'
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="lg:px-48 lg:py-6">
       <Navbar />
-      <section className="flex h-screen w-screen">
-        <div className='self-end'>
-          <h1 className="text-4xl font-bold">Kyro Bros</h1>
-          <p className="mt-2 text-lg text-gray-700">Party supplies & delivery — let's make your event unforgettable.</p>
-        </div>
-        <div></div>
-        <div></div>
-      </section>
-      {/* <InquiryForm /> */}
+      <Hero />
+      <Banner />
     </main>
   )
 }
