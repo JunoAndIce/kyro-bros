@@ -8,7 +8,7 @@ import { redirect } from 'next/navigation'
 export async function createDepositCheckout(bookingId: string) {
   const booking = await prisma.booking.findUniqueOrThrow({
     where: { id: bookingId },
-    include: { deliveryPackage: true, items: { include: { product: true } } },
+    include: { deliveryPackage: true },
   })
 
   const depositAmount = Math.round(booking.totalPrice * 0.3) // 30% deposit

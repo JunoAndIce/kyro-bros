@@ -5,9 +5,6 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-// Must be raw body — Stripe uses it to verify the signature
-export const config = { api: { bodyParser: false } }
-
 export async function POST(req: NextRequest) {
   const body      = await req.text()
   const signature = req.headers.get('stripe-signature')
