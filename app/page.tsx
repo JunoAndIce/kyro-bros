@@ -1,13 +1,22 @@
-import Navbar from '@/app/components/navbar'
-import Hero from '@/app/components/hero'
-import Banner from '@/app/components/banner'
+import Image from 'next/image'
+import Navbar from '@/app/components/home/navbar'
+import Hero from '@/app/components/home/hero'
+import Banner from '@/app/components/home/banner'
+import PackagesHome from './components/home/packagesHome'
+import ServicesHome from './components/home/servicesHome'
+
 
 export default function Home() {
+
+
   return (
-    <main className="lg:px-48 lg:py-6">
+    <main className="lg:px-36">
       <Navbar />
       <Hero />
       <Banner />
+      <PackagesHome />
+      <ServicesHome />
+
     </main>
   )
 }

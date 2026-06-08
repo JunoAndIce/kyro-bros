@@ -20,9 +20,9 @@ export default function Banner() {
                 <div className="lg:hidden h-px bg-white/40 mx-6" />
               </>
             )}
-            <div className="flex items-center gap-4 flex-1 px-6 py-5">
+            <div className="flex items-center gap-4 flex-1 min-w-0 px-6 py-5">
               <Icon size={36} className="shrink-0 opacity-90" />
-              <div>
+              <div className="min-w-0">
                 <p className="type-title text-sm">{title}</p>
                 <p className="text-sm opacity-70 mt-1">{desc}</p>
               </div>

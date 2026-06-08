@@ -107,6 +107,20 @@ html[data-theme="dark"] body {
   background-color: transparent !important;
 }
 
+/* Desktop navbar is always solid and theme-matched, applied via CSS (not JS state)
+   so it's correct on first paint instead of flashing transparent while React hydrates */
+@media screen and (min-width: 1024px) {
+  html[data-theme="light"] .navbar.is-fixed-top.navbar-transparent,
+  html[data-theme="light"] .navbar.is-fixed-top.navbar-transparent .navbar-menu {
+    background-color: var(--bulma-light) !important;
+  }
+
+  html[data-theme="dark"] .navbar.is-fixed-top.navbar-transparent,
+  html[data-theme="dark"] .navbar.is-fixed-top.navbar-transparent .navbar-menu {
+    background-color: var(--bulma-dark) !important;
+  }
+}
+
 .navbar.is-fixed-top.is-light .navbar-menu {
   background-color: var(--bulma-light) !important;
 }
@@ -115,8 +129,14 @@ html[data-theme="dark"] body {
   background-color: var(--bulma-dark) !important;
 }
 
+/* Bulma fills .navbar-item with a solid background on hover/focus/focus-within/active.
+   The brand link wraps a transparent logo, so pin the fill's alpha at 0 to keep it transparent
+   in every one of those states instead of overriding background-color per pseudo-class. */
+.navbar-brand-link {
+  --bulma-navbar-item-background-a: 0 !important;
+}
+
 .type-title {
   font-family: var(--font-inter), sans-serif;
-  font-weight: 800 !important;
   text-transform: uppercase;
 }

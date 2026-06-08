@@ -15,6 +15,8 @@ const lineBase: React.CSSProperties = {
   strokeLinecap: 'round',
 }
 
+// Pseudocode: each path has two dash states it animates between —
+// "inactive" draws three bars, "active" redraws the same paths as an X
 const hamStyles = {
   inactive: {
     top:    { ...lineBase, strokeDasharray: '40 82' },
@@ -28,24 +30,41 @@ const hamStyles = {
   },
 }
 
+const navLinks = [
+  { href: '/', label: 'Rentals' },
+  { href: '/bookings', label: 'Services' },
+  { href: '/products', label: 'Packages' },
+  { href: '/about', label: 'About Us' },
+  { href: '/contact', label: 'Contact Us' },
+]
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { theme } = useTheme()
+
+  const closeMenu = () => setMenuOpen(false)
+  const toggleMenu = () => setMenuOpen(prev => !prev)
   const paths = menuOpen ? hamStyles.active : hamStyles.inactive
 
+  // Pseudocode: on every scroll event, flag the navbar as "scrolled" once the page has moved off the top
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 0)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const bg = (scrolled || menuOpen) ? (theme === 'dark' ? 'is-dark' : 'is-light') : 'navbar-transparent'
+  // Pseudocode: show a solid, theme-matched background once scrolled or the mobile menu is open,
+  // otherwise stay transparent so it can overlay the hero. (Desktop always gets a solid navbar —
+  // that's handled in CSS via a media query so it's there on first paint, with no JS delay.)
+  const bg = (scrolled || menuOpen)
+    ? (theme === 'dark' ? 'is-dark' : 'is-light')
+    : 'navbar-transparent'
 
   return (
-    <nav className={`navbar is-fixed-top ${bg}`} role="navigation" aria-label="main navigation">
+    <nav className={`navbar is-fixed-top lg:px-24 ${bg}`} role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <Link href="/" className="navbar-item hover:!bg-transparent focus:!bg-transparent active:!bg-transparent">
+        <Link href="/" className="navbar-item navbar-brand-link">
           <Image
             alt="Kyro and Bros logo"
             src={kyroLogo}
@@ -59,7 +78,7 @@ export default function Navbar() {
           className={`navbar-burger is-hidden-desktop${menuOpen ? ' is-active' : ''}`}
           aria-label="menu"
           aria-expanded={menuOpen}
-          onClick={() => setMenuOpen(prev => !prev)}
+          onClick={toggleMenu}
           style={{ width: 'auto', height: 'auto', display: 'flex', alignItems: 'center' }}
         >
           <svg
@@ -82,11 +101,12 @@ export default function Navbar() {
 
       <div className={`navbar-menu${menuOpen ? ' is-active' : ''}`}>
         <div className="navbar-start">
-          <Link href="/" className="navbar-item" onClick={() => setMenuOpen(false)}>Rentals</Link>
-          <Link href="/bookings" className="navbar-item" onClick={() => setMenuOpen(false)}>Services</Link>
-          <Link href="/products" className="navbar-item" onClick={() => setMenuOpen(false)}>Packages</Link>
-          <Link href="/about" className="navbar-item" onClick={() => setMenuOpen(false)}>About Us</Link>
-          <Link href="/contact" className="navbar-item" onClick={() => setMenuOpen(false)}>Contact Us</Link>
+          {/* Pseudocode: render one navbar-item per entry, closing the mobile menu on tap */}
+          {navLinks.map(({ href, label }) => (
+            <Link key={href} href={href} className="navbar-item" onClick={closeMenu}>
+              {label}
+            </Link>
+          ))}
         </div>
 
         <div className="navbar-end">
@@ -94,7 +114,7 @@ export default function Navbar() {
             <ThemeToggle />
           </div>
           <div className="navbar-item">
-            <Link href="/bookings" onClick={() => setMenuOpen(false)}>
+            <Link href="/bookings" onClick={closeMenu}>
               <button className="button is-link">Book Now</button>
             </Link>
           </div>
