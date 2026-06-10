@@ -17,19 +17,19 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #1b1b1b;
     --foreground: #ededed;
   }
 }
 
 :root[data-theme="dark"] {
-  --background: #0a0a0a;
+  --background: #1b1b1b;
   --foreground: #ededed;
 }
 
 :root[data-theme="light"] {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1b1b1b;
 }
 
 body {
@@ -40,11 +40,11 @@ body {
 
 html[data-theme="light"] body {
   background: #ffffff;
-  color: #171717;
+  color: #1b1b1b;
 }
 
 html[data-theme="dark"] body {
-  background: #0a0a0a;
+  background: #1b1b1b;
   color: #ededed;
 }
 
@@ -55,6 +55,7 @@ html[data-theme="dark"] body {
 
 .hero-bg-img {
   object-fit: cover;
+  object-position: bottom;
 }
 
 .hero-fade-bottom {

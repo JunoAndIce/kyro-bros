@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { Star } from 'lucide-react'
 import balloons from '@/public/merchandise/balloons.jpg'
 import table from '@/public/merchandise/tables.jpg'
 import tent from '@/public/merchandise/tents.jpg'
@@ -18,24 +19,43 @@ export default function PackagesHome() {
   return (
     <main className="py-18">
       <div className="container text-center px-3">
-        <div className="">
-          <h2 className="title is-2 type-title ">Ready to Elevate Your Event?</h2>
-          <p className="subtitle is-6 mt-3">Explore our wide range of rentals and packages to find the perfect fit for your next unforgettable occasion.</p>
+        <div className="lg:mt-24">
+          <div className="flex items-center justify-center gap-2 lg:gap-6">
+            <Star className="size-4 lg:size-12 shrink-0 fill-red-800 text-red-800" />
+            <h2 className="title mb-0 is-1 type-title text-xl! lg:text-6xl!">Ready to Elevate Your Event?</h2>
+            <Star className="size-4 lg:size-12 shrink-0 fill-red-800 text-red-800" />
+          </div>
+          <div className="mt-6 lg:mt-24">
+            <p className="subtitle is-6">Explore our wide range of rentals and packages to find the perfect fit for your next unforgettable occasion.</p>
+          </div>
         </div>
 
-        <div className="">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mt-5">
+        <div className="mt-12">
+          {/* mobile: long horizontal cards with the label inside */}
+          <div className="flex flex-col gap-4 mt-5 sm:hidden">
+            {items.map(({ image, title, desc }) => (
+              <div key={title} className="relative aspect-2/1 w-full overflow-hidden">
+                <Image src={image} alt={desc} fill className="object-cover" />
+                <div className="absolute inset-x-0 bottom-0 h-[60%] bg-linear-to-t from-background to-transparent" />
+                <p className="absolute bottom-3 left-4 type-title font-bold text-sm text-foreground">{title}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="hidden sm:grid sm:grid-cols-3 lg:grid-cols-5 gap-4 mt-5">
             {items.map(({ image, title, desc }) => (
               <div key={title} className="flex flex-col items-center gap-2">
-                <div className="relative aspect-square w-full overflow-hidden rounded-2xl">
+                <div className="relative aspect-square w-full overflow-hidden">
                   <Image src={image} alt={desc} fill className="object-cover" />
                 </div>
                 <p className="type-title font-bold text-sm">{title}</p>
               </div>
             ))}
           </div>
-          <button className="button is-danger is-outlined">Find What's Right for You</button>
-        </div>    
+          <div className="mt-8">
+            <button className="button is-danger is-outlined">Find What's Right for You</button>
+          </div>
+        </div>
       </div>
     </main>
   )

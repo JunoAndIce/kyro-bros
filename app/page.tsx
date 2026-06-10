@@ -10,12 +10,15 @@ export default function Home() {
 
 
   return (
-    <main className="lg:px-36">
+    <main className="">
       <Navbar />
       <Hero />
       <Banner />
       <PackagesHome />
       <ServicesHome />
+      <div>
+        
+      </div>
 
     </main>
   )

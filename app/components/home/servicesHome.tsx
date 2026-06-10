@@ -10,7 +10,7 @@ const items = [
 export default function ServicesHome() {
   return (
     <div className="lg:px-0 py-18">
-      <div className="columns is-variable is-6 is-vcentered">
+      <div className=" is-variable is-6 is-vcentered">
         <div className="column p-0!">
           <div className="bg-red-800 text-white p-6">
             <h2 className="title is-3 type-title has-text-white">We Do More Than Rent</h2>
