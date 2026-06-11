@@ -10,7 +10,7 @@ const items = [
 
 export default function Banner() {
   return (
-    <div className="bg-blue-900 text-white">
+    <div className="bg-blue-700 text-white">
       <div className="flex flex-col lg:flex-row">
         {items.map(({ icon: Icon, title, desc }, i) => (
           <React.Fragment key={title}>

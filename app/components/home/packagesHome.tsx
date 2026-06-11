@@ -44,16 +44,16 @@ export default function PackagesHome() {
 
           <div className="hidden sm:grid sm:grid-cols-3 lg:grid-cols-5 gap-4 mt-5">
             {items.map(({ image, title, desc }) => (
-              <div key={title} className="flex flex-col items-center gap-2">
-                <div className="relative aspect-square w-full overflow-hidden">
-                  <Image src={image} alt={desc} fill className="object-cover" />
-                </div>
-                <p className="type-title font-bold text-sm">{title}</p>
+              <div key={title} className="group relative aspect-square w-full overflow-hidden">
+                <Image src={image} alt={desc} fill className="object-cover" />
+                <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/40" />
+                <div className="absolute inset-x-0 bottom-0 h-[60%] bg-linear-to-t from-background to-transparent" />
+                <p className="absolute bottom-3 left-4 type-title font-bold text-sm text-foreground">{title}</p>
               </div>
             ))}
           </div>
           <div className="mt-8">
-            <button className="button is-danger is-outlined">Find What's Right for You</button>
+            <button className="button is-danger is-outlined is-responsive is-large">Find What's Right for You</button>
           </div>
         </div>
       </div>
