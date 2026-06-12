@@ -169,8 +169,24 @@ html[data-theme="dark"] body {
   animation: fade-up 0.4s ease both;
 }
 
+/* page transition: opacity only — animating transform here would turn the wrapper
+   into the containing block for the fixed navbar while the animation runs */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-enter {
+  animation: page-enter 0.3s ease both;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .fade-up {
+  .fade-up,
+  .page-enter {
     animation: none;
   }
 }

@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+import Navbar from '../components/home/navbar'
+import ContactFaq from '../components/home/contactFaq'
+import InquiryForm from '../components/home/InquiryForm'
 
 export const metadata: Metadata = {
   title: 'Contact Us',
@@ -9,9 +12,25 @@ export const metadata: Metadata = {
 
 export default function ContactUs() {
   return (
-    <main className="px-4 py-16">
-      <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
-      <p>Get in touch with us for inquiries and support.</p>
+    <main>
+      <Navbar />
+      <h1 className="sr-only">Contact Us</h1>
+      <ContactFaq />
+      <section className="pb-18">
+        <div className="mx-auto max-w-3xl px-3">
+          <div className="flex items-center justify-center gap-4">
+            <span className="h-0.5 w-8 bg-red-800 shrink-0" />
+            <h2 className="title is-5 type-title mb-0! uppercase">Send an Inquiry</h2>
+            <span className="h-0.5 w-8 bg-red-800 shrink-0" />
+          </div>
+          <p className="mt-3 text-sm opacity-70 text-center">
+            Tell us about your event and we&apos;ll get back to you fast.
+          </p>
+          <div className="mt-8">
+            <InquiryForm />
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
