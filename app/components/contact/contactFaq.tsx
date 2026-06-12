@@ -30,7 +30,7 @@ export default function ContactFaq() {
     <section>
       {/* red banner title band */}
       <div className="relative overflow-hidden bg-red-800 text-white">
-        <Image src={confetti} alt="" fill className="object-cover opacity-20 pointer-events-none select-none" />
+        <Image src={confetti} alt="" fill sizes="100vw" className="object-cover opacity-20 pointer-events-none select-none" />
         <div className="relative container px-3 py-14 lg:py-24 text-center">
           <div className="flex items-center justify-center gap-4">
             <span className="h-0.5 w-8 bg-white/70 shrink-0" />

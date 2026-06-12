@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import Navbar from '../components/home/navbar'
-import ServicesHero from '../components/home/servicesHero'
-import ServicesSelector from '../components/home/servicesSelector'
-import Footer from '../components/home/footer'
+import Navbar from '../components/generic/navbar'
+import ServicesHero from '../components/services/servicesHero'
+import ServicesSelector from '../components/services/servicesSelector'
+import Footer from '../components/generic/footer'
 
 export const metadata: Metadata = {
   title: 'Services',

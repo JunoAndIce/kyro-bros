@@ -1,13 +1,14 @@
 import background from '@/public/background.webp'
 import background2 from '@/public/background_2.webp'
+import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Hero() {
     return (
         <div className="hero h-screen hero-bg">
             <div className="absolute inset-0 lg:left-3/5 lg:w-2/5">
-                <Image src={background} alt="" fill className=" lg:hidden hero-bg-img" priority />
-                <Image src={background2} alt="" fill className="hidden lg:block hero-bg-img" priority />
+                <Image src={background} alt="" fill sizes="(max-width: 1024px) 100vw, 40vw" className=" lg:hidden hero-bg-img" priority />
+                <Image src={background2} alt="" fill sizes="(max-width: 1024px) 100vw, 40vw" className="hidden lg:block hero-bg-img" priority />
             </div>
             {/* mobile: fade from bottom */}
             <div className="absolute inset-x-0 bottom-0 h-[60%] bg-linear-to-t from-background to-transparent z-1  lg:hidden" />
@@ -20,8 +21,8 @@ export default function Hero() {
                             <h1 className="title is-1 text-4xl! lg:text-8xl!"><span className="type-title font-black! text-red-800">Bring the Party,</span><br/><span className="type-title font-black!">We'll Bring Everything Else</span></h1>
                             <p className="subtitle mt-3 is-6 type-title text-sm! lg:text-xl!">From tents to tables and everything in between, we have what you need to make your event unforgettable.</p>
                             <div className="buttons mt-4">
-                                <button className="button is-danger is-medium is-responsive ">Browse Supplies</button>
-                                <button className="button is-link is-medium is-responsive ">View Packages</button>
+                                <Link href="/packages" className="button is-danger is-medium is-responsive ">Browse Supplies</Link>
+                                <Link href="/contact"   className="button is-link is-medium is-responsive ">Make A Reservation</Link>
                             </div>
                         </div>
                     </div>

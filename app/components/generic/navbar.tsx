@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import kyroLogo from '@/public/KYROANDBROS.webp'
-import ThemeToggle from '@/app/components/ThemeToggle'
-import { useTheme } from '@/app/components/ThemeProvider'
+import ThemeToggle from '@/app/components/themes/ThemeToggle'
+import { useTheme } from '@/app/components/themes/ThemeProvider'
 
 const lineBase: React.CSSProperties = {
   fill: 'none',
@@ -32,7 +32,7 @@ const hamStyles = {
 
 const navLinks = [
   { href: '/services', label: 'Services' },
-  { href: '/products', label: 'Packages' },
+  { href: '/packages', label: 'Packages' },
   { href: '/about', label: 'About Us' },
   { href: '/contact', label: 'Contact Us' },
 ]
@@ -113,8 +113,8 @@ export default function Navbar() {
             <ThemeToggle />
           </div>
           <div className="navbar-item">
-            <Link href="/bookings" onClick={closeMenu}>
-              <button className="button is-link">Book Now</button>
+            <Link href="/contact" onClick={closeMenu} className="button is-link">
+              Book Now
             </Link>
           </div>
         </div>

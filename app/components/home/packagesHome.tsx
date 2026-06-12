@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ArrowRight, Check } from 'lucide-react'
 import balloons from '@/public/merchandise/balloons-transparent.webp'
 import table from '@/public/merchandise/tables.webp'
@@ -149,7 +150,7 @@ export default function PackagesHome() {
         </div>
 
         <div className="mt-18 text-center">
-          <button className="button is-danger is-outlined is-responsive is-large">Find What&apos;s Right for You</button>
+          <Link href="/packages" className="button is-danger is-responsive is-large">Find What&apos;s Right for You</Link>
         </div>
       </div>
     </main>

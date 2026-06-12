@@ -36,7 +36,7 @@ const services = [
       { icon: faLocationDot, label: 'Houston-wide' },
       { icon: faBoxOpen, label: 'Careful handling' },
     ],
-    cta: { label: 'Schedule Delivery', href: '/bookings' },
+    cta: { label: 'Schedule Delivery', href: '/contact' },
   },
   {
     icon: faScrewdriverWrench,
@@ -48,7 +48,7 @@ const services = [
       { icon: faRulerCombined, label: 'Your floor plan' },
       { icon: faCalendarCheck, label: 'Same-day takedown' },
     ],
-    cta: { label: 'Book Our Crew', href: '/bookings' },
+    cta: { label: 'Book Our Crew', href: '/contact' },
   },
   {
     icon: faUsers,
@@ -72,7 +72,7 @@ export default function ServicesSelector() {
     <section className="pb-18">
       {/* red banner title band */}
       <div className="relative overflow-hidden bg-red-800 text-white">
-        <Image src={confetti} alt="" fill className="object-cover opacity-20 pointer-events-none select-none" />
+        <Image src={confetti} alt="" fill sizes="100vw" className="object-cover opacity-20 pointer-events-none select-none" />
         <div className="relative container px-3 py-14 lg:py-24 text-center">
           <div className="flex items-center justify-center gap-4">
             <span className="h-0.5 w-8 bg-white/70 shrink-0" />

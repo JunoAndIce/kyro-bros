@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Truck, Wrench, Users } from 'lucide-react'
 import confetti from '@/public/confetti.webp'
 
@@ -15,11 +16,11 @@ export default function ServicesHome() {
       <div className=" is-variable is-6 is-vcentered">
         <div className="column p-0!">
           <div className="relative overflow-hidden bg-red-800 text-white p-6">
-            <Image src={confetti} alt="" fill className="object-cover opacity-20 pointer-events-none select-none" />
+            <Image src={confetti} alt="" fill sizes="100vw" className="object-cover opacity-20 pointer-events-none select-none" />
             <div className="relative">
               <h2 className="title is-3 type-title has-text-white">We Do More Than Rent</h2>
               <p className="mt-2">We're here to make your event easy, stress-free, and a success.</p>
-              <button className="button is-white is-outlined mt-4">Learn More</button>
+              <Link href="/services" className="button is-white is-outlined mt-4">Learn More</Link>
             </div>
           </div>
         </div>

@@ -1,4 +1,9 @@
+import type { Metadata } from 'next'
+import Navbar from '../components/generic/navbar'
+import Image from 'next/image'
 import Link from 'next/link'
+import confetti from '@/public/confetti.webp'
+
 
 const items = [
   {
@@ -21,9 +26,36 @@ const items = [
   },
 ]
 
-export default function Subscription() {
+export const metadata: Metadata = {
+  title: 'Packages & Party Supplies',
+  description:
+    'Browse curated event packages, subscription plans, and individual party supplies from Kyro & Bros in Houston, TX.',
+  alternates: { canonical: '/packages' },
+}
+
+export default function Products() {
   return (
-    <div className="py-18">
+    <main className="">
+      <Navbar />
+
+      <div className="relative overflow-hidden bg-red-800 text-white">
+        <Image src={confetti} alt="" fill sizes="100vw" className="object-cover opacity-20 pointer-events-none select-none" />
+        <div className="relative container px-3 py-14 lg:py-24 text-center">
+          <div className="flex items-center justify-center gap-4">
+            <span className="h-0.5 w-8 bg-white/70 shrink-0" />
+            <p className="type-title text-xs lg:text-sm font-bold tracking-widest text-white/80">Kyro &amp; Bros</p>
+            <span className="h-0.5 w-8 bg-white/70 shrink-0" />
+          </div>
+          <h2 className="title is-2 type-title has-text-white font-black! text-4xl! lg:text-6xl! mt-3 mb-0!">
+            Find the Perfect Solution
+          </h2>
+          <p className="mt-4 text-sm lg:text-base text-white/85 max-w-xl mx-auto">
+            Whether you're planning a small gathering or a large celebration, we have the perfect package for you.
+          </p>
+        </div>
+      </div>
+      
+      <div className="py-18">
       <div className="container text-center px-3">
         <div className="flex items-center justify-center gap-4">
           <span className="h-0.5 w-8 bg-red-800 shrink-0" />
@@ -55,7 +87,7 @@ export default function Subscription() {
                     <p className={`type-title text-3xl font-bold ${featured ? 'text-blue-700' : 'text-red-800'}`}>{price}</p>
                   </>
                 ) : (
-                  <Link href="/packages" className="button is-link">Learn More</Link>
+                  <Link href="/contact" className="button is-link">Learn More</Link>
                 )}
               </div>
             </div>
@@ -63,5 +95,6 @@ export default function Subscription() {
         </div>
       </div>
     </div>
+    </main>
   )
 }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import "bulma/css/bulma.min.css";
-import ThemeProvider from "@/app/components/ThemeProvider";
+import ThemeProvider from "@/app/components/themes/ThemeProvider";
 import { siteUrl, siteName, sitePhone, siteEmail, siteDescription } from "@/app/lib/site";
 
 const geistSans = Geist({

@@ -28,7 +28,7 @@ const slides: Slide[] = [
     accent: 'Party All Year,',
     rest: 'One Simple Plan',
     desc: 'Hosting events regularly? Our monthly plans keep tables, chairs, and decor on standby — with member pricing and priority booking.',
-    cta: { label: 'Explore Plans', href: '/products' },
+    cta: { label: 'Explore Plans', href: '/packages' },
     image: balloons,
     imageAlt: 'Colorful balloon arrangement for an event',
   },
@@ -37,7 +37,7 @@ const slides: Slide[] = [
     accent: 'Buy What You Need,',
     rest: "Skip What You Don't",
     desc: 'Balloons, decorations, tableware, and more — purchase party supplies individually, no bundle required.',
-    cta: { label: 'Shop Supplies', href: '/products' },
+    cta: { label: 'Shop Supplies', href: '/packages' },
     image: tables,
     imageAlt: 'Tables dressed and ready for a party',
   },
@@ -46,7 +46,7 @@ const slides: Slide[] = [
     accent: 'We Set Up,',
     rest: 'You Celebrate',
     desc: 'Our crew delivers, builds, and breaks down your event — tents, tables, chairs, and all — so you never lift a finger.',
-    cta: { label: 'Book Our Crew', href: '/bookings' },
+    cta: { label: 'Book Our Crew', href: '/contact' },
     image: tents,
     imageAlt: 'Event tent assembled on a lawn',
   },
@@ -55,7 +55,7 @@ const slides: Slide[] = [
     accent: 'On Time,',
     rest: 'Every Time',
     desc: 'Reliable delivery and pickup across the Houston area, scheduled around your event — not the other way around.',
-    cta: { label: 'Schedule Delivery', href: '/bookings' },
+    cta: { label: 'Schedule Delivery', href: '/contact' },
     image: lawn,
     imageAlt: 'Lawn games delivered for an outdoor event',
   },
@@ -64,7 +64,7 @@ const slides: Slide[] = [
     accent: 'One Booking,',
     rest: 'Everything Included',
     desc: 'Curated packages sized to your guest count — rentals, delivery, and setup bundled together to save you time and money.',
-    cta: { label: 'View Packages', href: '/products' },
+    cta: { label: 'View Packages', href: '/packages' },
     image: chair,
     imageAlt: 'Rows of folding chairs arranged for an event',
   },
@@ -113,7 +113,7 @@ export default function ServicesHero() {
           inert={i !== active}
         >
           <div className="absolute inset-0 lg:left-3/5 lg:w-2/5">
-            <Image src={s.image} alt={s.imageAlt} fill className="hero-bg-img" priority={i === 0} />
+            <Image src={s.image} alt={s.imageAlt} fill sizes="(max-width: 1024px) 100vw, 40vw" className="hero-bg-img" priority={i === 0} />
           </div>
           {/* mobile: fade from bottom */}
           <div className="absolute inset-x-0 bottom-0 h-[225%] bg-linear-to-t from-background to-transparent z-1 lg:hidden" />
