@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Navbar from '../components/generic/navbar'
 import ContactFaq from '../components/contact/contactFaq'
 import ContactForm from '../components/contact/contactForm'
+import Footer from '../components/generic/footer'
 
 export const metadata: Metadata = {
   title: 'Contact Us',
@@ -17,6 +18,7 @@ export default function ContactUs() {
       <h1 className="sr-only">Contact Us</h1>
       <ContactFaq />
       <ContactForm />
+      <Footer />
     </main>
   )
 }
