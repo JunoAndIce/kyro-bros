@@ -3,9 +3,21 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --bulma-danger-h: 344;
-  --bulma-danger-s: 100%;
-  --bulma-danger-l: 34%;
+}
+
+/* Brand colors for Bulma's is-danger / is-link, matched to Tailwind's red-800 (#9f0712)
+   and blue-700 (#1447e6). html:root outranks every selector Bulma (re)declares these
+   under (:root, [data-theme=light], .theme-light) — necessary because bulma.min.css is
+   imported after this file in layout.tsx, so a plain :root override loses to it. */
+html:root {
+  --bulma-danger-h: 355.7deg;
+  --bulma-danger-s: 91.6%;
+  --bulma-danger-l: 32.5%;
+  /* default invert is near-black, sized for Bulma's original light pink; our red is dark */
+  --bulma-danger-invert-l: 100%;
+  --bulma-link-h: 225.4deg;
+  --bulma-link-s: 84%;
+  --bulma-link-l: 49%;
 }
 
 @theme inline {
@@ -140,4 +152,25 @@ html[data-theme="dark"] body {
 .type-title {
   font-family: var(--font-inter), sans-serif;
   text-transform: uppercase;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.4s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    animation: none;
+  }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { Truck, Wrench, Users } from 'lucide-react'
-import confetti from '@/public/confetti.png'
+import confetti from '@/public/confetti.webp'
 
 const items = [
   { icon: Truck, title: 'Delivery Services', desc: 'We deliver your items on time, every time.' },

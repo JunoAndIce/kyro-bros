@@ -1,3 +1,12 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Book Your Event',
+  description:
+    'Reserve party rentals, delivery, and setup & teardown services for your next event in the Houston area.',
+  alternates: { canonical: '/bookings' },
+}
+
 export default function Bookings() {
   return (
     <main className="px-4 py-16">

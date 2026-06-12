@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import kyroLogo from '@/public/KYROANDBROS.png'
+import kyroLogo from '@/public/KYROANDBROS.webp'
 import ThemeToggle from '@/app/components/ThemeToggle'
 import { useTheme } from '@/app/components/ThemeProvider'
 
@@ -31,8 +31,7 @@ const hamStyles = {
 }
 
 const navLinks = [
-  { href: '/', label: 'Rentals' },
-  { href: '/bookings', label: 'Services' },
+  { href: '/services', label: 'Services' },
   { href: '/products', label: 'Packages' },
   { href: '/about', label: 'About Us' },
   { href: '/contact', label: 'Contact Us' },

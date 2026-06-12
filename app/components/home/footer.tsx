@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import { Phone, MapPin, Mail } from 'lucide-react'
-import confetti from '@/public/confetti.png'
-import balloons from '@/public/merchandise/balloons.jpg'
+import confetti from '@/public/confetti.webp'
+import balloons from '@/public/merchandise/balloons-transparent.webp'
 
 const contacts = [
   { icon: Phone, label: '612-200-6350', sub: 'Call or Text', href: 'tel:612-200-6350' },
-  { icon: MapPin, label: 'Minneapolis, MN', sub: 'Serving the Twin Cities', href: undefined },
-  { icon: Mail, label: 'info@kyroandbros.com', sub: 'We reply fast!', href: 'mailto:info@kyroandbros.com' },
+  { icon: MapPin, label: 'Houston, TX', sub: 'Serving the Houston area', href: undefined },
+  { icon: Mail, label: 'kyrobros34@gmail.com', sub: 'We reply fast!', href: 'mailto:kyrobros34@gmail.com' },
 ]
 
 export default function Footer() {
@@ -24,22 +24,22 @@ export default function Footer() {
             Get a Quote Today
           </button>
           <div className="hidden lg:block relative self-stretch w-44 -my-8 -mr-3 shrink-0">
-            <Image src={balloons} alt="" fill className="object-cover pointer-events-none select-none" />
+            <Image src={balloons} alt="" fill className="opacity-20 pointer-events-none select-none" />
           </div>
         </div>
       </div>
 
       {/* contact band */}
-      <div className="container px-3 py-6">
-        <div className="flex flex-col sm:flex-row gap-6 sm:gap-4">
+      <div className="container px-15 py-6">
+        <div className="flex flex-col sm:flex-row gap-6 sm:gap-4 ">
           {contacts.map(({ icon: Icon, label, sub, href }) => (
-            <div key={label} className="flex items-center justify-center gap-3 flex-1 min-w-0">
+            <div key={label} className="flex items-center gap-3 flex-1 min-w-0 lg:justify-center">
               <span className="inline-flex items-center justify-center w-12 h-12 rounded-full border-2 border-red-800 text-red-800 shrink-0">
                 <Icon size={20} />
               </span>
               <div className="text-left">
                 {href ? (
-                  <a href={href} className="block type-title font-bold text-sm text-blue-700">{label}</a>
+                  <a href={href} className="mb-0! block type-title font-bold text-sm text-blue-700">{label}</a>
                 ) : (
                   <p className="type-title font-bold text-sm text-blue-700">{label}</p>
                 )}
@@ -53,7 +53,7 @@ export default function Footer() {
       {/* copyright bar */}
       <div className="bg-blue-700 text-white text-center py-2">
         <p className="type-title text-xs font-bold uppercase">
-          &copy; {new Date().getFullYear()} Kyro &amp; Bros Party Supply Rentals
+          &copy; {new Date().getFullYear()} <br/>Kyro &amp; Bros Party Supply Rentals
         </p>
       </div>
     </footer>

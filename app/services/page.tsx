@@ -1,8 +1,20 @@
+import type { Metadata } from 'next'
+import Navbar from '../components/home/navbar'
+import ServicesHero from '../components/home/servicesHero'
+
+export const metadata: Metadata = {
+  title: 'Services',
+  description:
+    'Subscription plans, individual party supplies, delivery, and full setup & teardown services for events across the Houston area.',
+  alternates: { canonical: '/services' },
+}
+
 export default function Services() {
   return (
-    <main className="px-4 py-16">
-      <h1 className="text-4xl font-bold mb-4">Services</h1>
-      <p>Explore our event services and delivery options.</p>
+    <main>
+      <Navbar />
+      <h1 className="sr-only">Our Services</h1>
+      <ServicesHero />
     </main>
   )
 }

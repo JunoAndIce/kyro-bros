@@ -1,5 +1,5 @@
-import background from '@/public/background.jpg'
-import background2 from '@/public/background_2.jpg'
+import background from '@/public/background.webp'
+import background2 from '@/public/background_2.webp'
 import Image from 'next/image'
 
 export default function Hero() {
@@ -20,8 +20,8 @@ export default function Hero() {
                             <h1 className="title is-1 text-4xl! lg:text-8xl!"><span className="type-title font-black! text-red-800">Bring the Party,</span><br/><span className="type-title font-black!">We'll Bring Everything Else</span></h1>
                             <p className="subtitle mt-3 is-6 type-title text-sm! lg:text-xl!">From tents to tables and everything in between, we have what you need to make your event unforgettable.</p>
                             <div className="buttons mt-4">
-                                <button className="button is-danger is-medium is-responsive  is-outlined">Browse Rentals</button>
-                                <button className="button is-link is-medium is-responsive is-outlined">View Packages</button>
+                                <button className="button is-danger is-medium is-responsive ">Browse Supplies</button>
+                                <button className="button is-link is-medium is-responsive ">View Packages</button>
                             </div>
                         </div>
                     </div>
