@@ -59,14 +59,14 @@ export default function Footer() {
       </div>
 
       {/* site credits bar */}
-      <div className="bg-blue-800 text-white text-center py-2 ">
+      <div className="text-center py-2 ">
         <p className="text-xs opacity-90">
-          Made by{' '}
+          Site developed by{' '}
           <a
             href="https://github.com/JunoAndIce"
             target="_blank"
             rel="noopener noreferrer"
-            className="has-text-white font-bold underline decoration-white/40 underline-offset-2 hover:decoration-white"
+            className="font-bold underline decoration-white/40 underline-offset-2 hover:decoration-white"
           >
             Juno &amp; Ice 
           </a>{' '}
