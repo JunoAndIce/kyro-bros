@@ -89,7 +89,7 @@ export default function ServicesHero() {
 
   return (
     <section
-      className="hero h-screen hero-bg"
+      className="hero h-[50vh] min-h-105 hero-bg"
       role="region"
       aria-roledescription="carousel"
       aria-label="Our services"
@@ -116,19 +116,19 @@ export default function ServicesHero() {
             <Image src={s.image} alt={s.imageAlt} fill className="hero-bg-img" priority={i === 0} />
           </div>
           {/* mobile: fade from bottom */}
-          <div className="absolute inset-x-0 bottom-0 h-[60%] bg-linear-to-t from-background to-transparent z-1 lg:hidden" />
+          <div className="absolute inset-x-0 bottom-0 h-[225%] bg-linear-to-t from-background to-transparent z-1 lg:hidden" />
           {/* desktop: fade from left */}
           <div className="absolute inset-y-0 left-3/5 w-[85%] bg-linear-to-r from-background to-transparent z-1 hidden lg:block" />
-          <div className="hero-content mt-auto lg:my-auto px-3 pb-20 lg:pb-6">
+          <div className="hero-content mt-auto lg:my-auto px-3 pb-16 lg:pb-6">
             <div className="container">
               <div className="columns">
                 <div className="column is-9-desktop">
                   <p className="type-title font-bold text-xs lg:text-sm tracking-widest text-blue-700">{s.eyebrow}</p>
-                  <h2 className="title is-1 text-4xl! lg:text-7xl! mt-2">
+                  <h2 className="title is-1 text-3xl! lg:text-5xl! mt-2">
                     <span className="type-title font-black! text-red-800">{s.accent}</span><br />
                     <span className="type-title font-black!">{s.rest}</span>
                   </h2>
-                  <p className="subtitle mt-3 is-6 type-title text-sm! lg:text-xl!">{s.desc}</p>
+                  <p className="subtitle mt-3 is-6 type-title text-sm! lg:text-lg!">{s.desc}</p>
                   <div className="buttons mt-4">
                     <Link href={s.cta.href} className="button is-danger is-medium is-responsive">{s.cta.label}</Link>
                     <Link href="/contact" className="button is-link is-medium is-responsive">Get a Quote</Link>
@@ -162,8 +162,8 @@ export default function ServicesHero() {
             onClick={() => go(i)}
             aria-label={`Go to slide ${i + 1}: ${s.eyebrow}`}
             aria-current={i === active}
-            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-              i === active ? 'w-8 bg-red-800' : 'w-2 bg-foreground/30 hover:bg-foreground/50'
+            className={`h-2! p-0! border-0! shadow-none! rounded-full transition-all! duration-300! cursor-pointer ${
+              i === active ? 'w-8 bg-red-800!' : 'w-2 bg-foreground/30! hover:bg-foreground/50!'
             }`}
           />
         ))}

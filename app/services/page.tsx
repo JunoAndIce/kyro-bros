@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Navbar from '../components/home/navbar'
 import ServicesHero from '../components/home/servicesHero'
+import ServicesSelector from '../components/home/servicesSelector'
+import Footer from '../components/home/footer'
 
 export const metadata: Metadata = {
   title: 'Services',
@@ -15,6 +17,8 @@ export default function Services() {
       <Navbar />
       <h1 className="sr-only">Our Services</h1>
       <ServicesHero />
+      <ServicesSelector />
+      <Footer />
     </main>
   )
 }
