@@ -35,9 +35,19 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row gap-6 sm:gap-4 ">
           {contacts.map(({ icon: Icon, label, sub, href }) => (
             <div key={label} className="flex items-center gap-3 flex-1 min-w-0 lg:justify-center">
-              <span className="inline-flex items-center justify-center w-12 h-12 rounded-full border-2 border-red-800 text-red-800 shrink-0">
-                <Icon size={20} />
-              </span>
+              {href ? (
+                <a
+                  href={href}
+                  aria-label={`${sub}: ${label}`}
+                  className="inline-flex items-center justify-center w-12 h-12 rounded-full border-2 border-red-800 text-red-800 shrink-0 transition-colors hover:bg-red-800 hover:text-white"
+                >
+                  <Icon size={20} />
+                </a>
+              ) : (
+                <span className="inline-flex items-center justify-center w-12 h-12 rounded-full border-2 border-red-800 text-red-800 shrink-0">
+                  <Icon size={20} />
+                </span>
+              )}
               <div className="text-left">
                 {href ? (
                   <a href={href} className="mb-0 block type-title font-bold text-sm text-blue-700">{label}</a>

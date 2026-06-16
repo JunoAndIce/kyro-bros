@@ -123,6 +123,7 @@ export default function PackagesHome() {
                   src={image}
                   alt={`${title} rentals`}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 58vw"
                   className={`object-cover transition-opacity duration-500 ${
                     i === active ? 'opacity-100' : 'opacity-0'
                   }`}

@@ -19,7 +19,7 @@ export default function ServicesHome() {
             <Image src={confetti} alt="" fill sizes="100vw" className="object-cover opacity-20 pointer-events-none select-none" />
             <div className="relative">
               <h2 className="title is-3 type-title has-text-white">We Do More Than Rent</h2>
-              <p className="mt-2">We're here to make your event easy, stress-free, and a success.</p>
+              <p className="mt-2">We&apos;re here to make your event easy, stress-free, and a success.</p>
               <Link href="/services" className="button is-white is-outlined mt-4">Learn More</Link>
             </div>
           </div>

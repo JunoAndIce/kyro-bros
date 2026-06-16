@@ -31,7 +31,7 @@ export default function ContactFaq() {
       {/* red banner title band */}
       <div className="relative overflow-hidden bg-red-800 text-white">
         <Image src={confetti} alt="" fill sizes="100vw" className="object-cover opacity-20 pointer-events-none select-none" />
-        <div className="relative container px-3 py-14 lg:py-24 text-center">
+        <div className="relative container px-3 py-21 lg:py-24 text-center">
           <div className="flex items-center justify-center gap-4">
             <span className="h-0.5 w-8 bg-white/70 shrink-0" />
             <p className="type-title text-xs lg:text-sm font-bold tracking-widest text-white/80">Kyro &amp; Bros</p>
@@ -47,7 +47,7 @@ export default function ContactFaq() {
       </div>
 
       {/* short FAQ: native <details> so each question opens without any JS */}
-      <div className="mx-auto max-w-3xl px-3 py-14">
+      <div className="mx-auto max-w-3xl px-3 py-21">
         <div className="flex items-center justify-center gap-4">
           <span className="h-0.5 w-8 bg-red-800 shrink-0" />
           <h2 className="title is-5 type-title mb-0! uppercase">Common Questions</h2>

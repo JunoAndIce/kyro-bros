@@ -100,20 +100,25 @@ export default function Navbar() {
 
       <div className={`navbar-menu${menuOpen ? ' is-active' : ''}`}>
         <div className="navbar-start">
-          {/* Pseudocode: render one navbar-item per entry, closing the mobile menu on tap */}
+          {/* Pseudocode: render one navbar-item per entry, closing the mobile menu on tap.
+              The dash is a mobile-only marker that turns the stacked menu into a tidy list. */}
           {navLinks.map(({ href, label }) => (
-            <Link key={href} href={href} className="navbar-item" onClick={closeMenu}>
+            <Link key={href} href={href} className="navbar-item mx-3 my-3 lg:mx-6" onClick={closeMenu}>
+              <span aria-hidden="true" className="mr-3 text-red-800 lg:hidden">—</span>
               {label}
             </Link>
           ))}
         </div>
 
-        <div className="navbar-end">
+        {/* Mobile: a bottom row with Book Now on the left and the theme switch across from
+            it on the right (flex-row-reverse over [toggle, button]). Desktop reverts to
+            Bulma's right-aligned row. */}
+        <div className="navbar-end flex flex-row-reverse items-center justify-between max-lg:mt-2 max-lg:border-t max-lg:border-foreground/10 max-lg:px-2 max-lg:pt-3 lg:flex-row lg:justify-end">
           <div className="navbar-item">
             <ThemeToggle />
           </div>
           <div className="navbar-item">
-            <Link href="/contact" onClick={closeMenu} className="button is-link">
+            <Link href="/contact" onClick={closeMenu} className="button is-link is-normal is-responsive">
               Book Now
             </Link>
           </div>

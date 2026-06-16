@@ -18,7 +18,7 @@ export default function Hero() {
                 <div className="container">
                     <div className="columns">
                         <div className="column is-9-desktop">
-                            <h1 className="title is-1 text-4xl! lg:text-8xl!"><span className="type-title font-black! text-red-800">Bring the Party,</span><br/><span className="type-title font-black!">We'll Bring Everything Else</span></h1>
+                            <h1 className="title is-1 text-4xl! lg:text-8xl!"><span className="type-title font-black! text-red-800">Bring the Party,</span><br/><span className="type-title font-black!">We&apos;ll Bring Everything Else</span></h1>
                             <p className="subtitle mt-3 is-6 type-title text-sm! lg:text-xl!">From tents to tables and everything in between, we have what you need to make your event unforgettable.</p>
                             <div className="buttons mt-4">
                                 <Link href="/packages" className="button is-danger is-medium is-responsive ">Browse Supplies</Link>

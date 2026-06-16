@@ -29,19 +29,19 @@ html:root {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1b1b1b;
+    --background: #0f0f0f;
     --foreground: #ededed;
   }
 }
 
 :root[data-theme="dark"] {
-  --background: #1b1b1b;
+  --background: #0f0f0f;
   --foreground: #ededed;
 }
 
 :root[data-theme="light"] {
   --background: #ffffff;
-  --foreground: #1b1b1b;
+  --foreground: #0f0f0f;
 }
 
 body {
@@ -52,11 +52,11 @@ body {
 
 html[data-theme="light"] body {
   background: #ffffff;
-  color: #1b1b1b;
+  color: #0f0f0f;
 }
 
 html[data-theme="dark"] body {
-  background: #1b1b1b;
+  background: #0f0f0f;
   color: #ededed;
 }
 
@@ -147,6 +147,31 @@ html[data-theme="dark"] body {
    in every one of those states instead of overriding background-color per pseudo-class. */
 .navbar-brand-link {
   --bulma-navbar-item-background-a: 0 !important;
+}
+
+/* Menu polish. `html …` / `html[data-theme] …` selectors outrank Bulma's own
+   `.navbar` declarations (bulma.min.css loads after this file), so we steer Bulma's
+   variables instead of fighting individual properties. */
+
+/* Menu text uses the site's foreground color so it matches in both themes. */
+html .navbar {
+  --bulma-navbar-item-color: var(--foreground);
+}
+
+/* Menu links share the site's title font — Inter, bold, uppercase. Skips the brand
+   link, which only wraps the logo image. */
+html .navbar .navbar-item:not(.navbar-brand-link) {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Dark navbar (background, scrolled state, and mobile menu) matched to the site's
+   near-black instead of Bulma's default blue-gray dark. Every dark-navbar surface
+   resolves var(--bulma-dark), so one override covers them all. */
+html[data-theme="dark"] .navbar {
+  --bulma-dark: #0f0f0f;
 }
 
 .type-title {
