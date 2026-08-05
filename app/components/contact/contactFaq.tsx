@@ -2,10 +2,18 @@ import Image from 'next/image'
 import { ChevronDown } from 'lucide-react'
 import confetti from '@/public/confetti.webp'
 
+type Faq = {
+  q: string
+  a: string
+  /* Parked, not rendered. Set to false once `a` is filled in — the render
+     also skips any entry with an empty answer, so flipping this early can't
+     ship a blank card. */
+  hidden?: boolean
+}
+
 /* Every answer here is derived from the rate card — if a rate changes, this
-   list changes with it. Deliberately omitted until the client confirms them:
-   booking lead time, weather/cancellation policy, and deposit terms. */
-const faqs = [
+   list changes with it. */
+const faqs: Faq[] = [
   {
     q: 'Do you deliver, and which areas do you cover?',
     a: 'We deliver across the Houston area, priced by distance from our HQ: $75 flat within 15 miles, $125 from 16 to 30 miles, and $125 plus $2.50 per mile beyond 30. That fee covers pickup after your event too, and everything arrives dropped off and neatly stacked at no extra charge.',
@@ -37,6 +45,21 @@ const faqs = [
   {
     q: 'What if we cannot stake into the ground?',
     a: 'Not a problem. Where staking is not an option — pavement, patios, or turf you would rather not puncture — we anchor with concrete or water barrel weights instead, at $20 per tent leg.',
+  },
+  {
+    q: 'How far in advance should I book?',
+    a: '',
+    hidden: true,
+  },
+  {
+    q: 'What is your weather or cancellation policy?',
+    a: '',
+    hidden: true,
+  },
+  {
+    q: 'Do you require a deposit to reserve a date?',
+    a: '',
+    hidden: true,
   },
 ]
 
@@ -70,7 +93,7 @@ export default function ContactFaq() {
         </div>
 
         <div className="mt-8 flex flex-col gap-3">
-          {faqs.map(({ q, a }) => (
+          {faqs.filter(({ a, hidden }) => !hidden && a.trim()).map(({ q, a }) => (
             <details key={q} className="group rounded border border-blue-700/20">
               <summary className="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                 <span className="type-title text-sm font-bold">{q}</span>
