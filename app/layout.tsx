@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import "bulma/css/bulma.min.css";
 import ThemeProvider from "@/app/components/themes/ThemeProvider";
+import { Analytics } from "@vercel/analytics/next";
 import { siteUrl, siteName, sitePhone, siteEmail, siteDescription } from "@/app/lib/site";
 
 const geistSans = Geist({
@@ -94,6 +95,7 @@ export default function RootLayout({
           }}
         />
         <ThemeProvider>{children}</ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
