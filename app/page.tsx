@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import Navbar from '@/app/components/generic/navbar'
 import Hero from '@/app/components/home/hero'
 import Banner from '@/app/components/home/banner'
+import AboutHome from './components/home/aboutHome'
 import PackagesHome from './components/home/packagesHome'
 import ServicesHome from './components/home/servicesHome'
-import Subscription from './components/home/subscription'
+import PackagePricing from './components/home/packagePricing'
 import Footer from './components/generic/footer'
 
 // title and description come from the root layout defaults
@@ -21,9 +22,10 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Banner />
+      <AboutHome />
       <PackagesHome />
       <ServicesHome />
-      <Subscription />
+      <PackagePricing />
       <Footer />
     </main>
   )

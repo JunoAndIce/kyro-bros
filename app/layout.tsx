@@ -69,16 +69,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${interTight.variable}`}>
-      <body className="min-h-full flex flex-col">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${interTight.variable}`}
+    >
+      <head>
         {/* Set the saved/system theme on <html> before paint so the last-used theme is
-            applied on refresh with no flash of the wrong colors. Mirrored into React by
-            ThemeProvider via useSyncExternalStore. */}
+            applied on refresh with no flash of the wrong colors. Lives in <head> so it
+            runs before any body content is parsed. Mirrored into React by ThemeProvider
+            via useSyncExternalStore. */}
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
           }}
         />
+      </head>
+      <body className="min-h-full flex flex-col">
         {/* docs recommend a native <script> for JSON-LD (it's data, not executable code) */}
         <script
           type="application/ld+json"

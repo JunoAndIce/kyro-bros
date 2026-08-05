@@ -9,15 +9,19 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import {
   faTruckFast,
   faScrewdriverWrench,
-  faUsers,
+  faLightbulb,
+  faStopwatch,
+  faFileContract,
   faClock,
   faLocationDot,
   faBoxOpen,
   faRulerCombined,
   faCalendarCheck,
-  faHeadset,
-  faListCheck,
-  faHandshakeAngle,
+  faAnchor,
+  faShieldHalved,
+  faStairs,
+  faMoon,
+  faTag,
   faImage,
 } from '@fortawesome/free-solid-svg-icons'
 import confetti from '@/public/confetti.webp'
@@ -28,39 +32,87 @@ config.autoAddCss = false
 const services = [
   {
     icon: faTruckFast,
-    title: 'Delivery',
-    blurb: 'On time, every time.',
-    desc: 'We bring your rentals straight to your door — home, venue, park, or office. Our team schedules every delivery around your event timeline and confirms each drop-off in advance. When the party is over, pickup is just as easy: we haul everything away for you.',
+    title: 'Delivery & Pickup',
+    blurb: 'Flat-rate zones from our Houston HQ.',
+    desc: 'We bring your rentals straight to your event — home, venue, park, or office — and haul everything away when it is over. Delivery is priced by how far your address sits from our Houston HQ, and drop-off with everything neatly stacked is included in that fee.',
+    rates: [
+      { label: 'Zone 1 — 0 to 15 miles', price: '$75.00 flat' },
+      { label: 'Zone 2 — 16 to 30 miles', price: '$125.00 flat' },
+      { label: 'Zone 3 — over 30 miles', price: '$125.00 + $2.50 / extra mile' },
+    ],
     tags: [
-      { icon: faClock, label: 'On-time windows' },
       { icon: faLocationDot, label: 'Houston-wide' },
-      { icon: faBoxOpen, label: 'Careful handling' },
+      { icon: faBoxOpen, label: 'Stacked drop-off included' },
+      { icon: faClock, label: 'Scheduled around your event' },
     ],
     cta: { label: 'Schedule Delivery', href: '/contact' },
   },
   {
     icon: faScrewdriverWrench,
-    title: 'Setup & Takedown',
-    blurb: "We handle the hard work so you don't have to.",
-    desc: 'Skip the heavy lifting. Our crew assembles tents, tables, chairs, and decor exactly where you want them, following your layout down to the last chair. After the event, we break everything down and leave the space the way we found it.',
-    tags: [
-      { icon: faScrewdriverWrench, label: 'Full assembly' },
-      { icon: faRulerCombined, label: 'Your floor plan' },
-      { icon: faCalendarCheck, label: 'Same-day takedown' },
+    title: 'Setup & Teardown',
+    blurb: 'Let the crew place every chair.',
+    desc: 'Stacked drop-off comes standard at no extra cost. Add the labor service and our crew sets out your tables and chairs exactly where you want them, following your layout down to the last seat — then breaks it all down after the event.',
+    rates: [
+      { label: 'Full setup & teardown — chairs', price: '+$1.00 per chair' },
+      { label: 'Full setup & teardown — tables', price: '+$3.00 per table' },
     ],
-    cta: { label: 'Book Our Crew', href: '/contact' },
+    tags: [
+      { icon: faRulerCombined, label: 'Your floor plan' },
+      { icon: faCalendarCheck, label: 'Teardown handled' },
+      { icon: faBoxOpen, label: 'Optional add-on' },
+    ],
+    cta: { label: 'Add Setup Service', href: '/contact' },
   },
   {
-    icon: faUsers,
-    title: 'Event Support',
-    blurb: "We're here to make your event a success.",
-    desc: "Questions before the big day? Need an extra set of hands while the party is running? We stay on call from planning through cleanup, so small surprises never turn into big problems. Think of us as part of your event crew.",
-    tags: [
-      { icon: faHeadset, label: 'On-call team' },
-      { icon: faListCheck, label: 'Planning help' },
-      { icon: faHandshakeAngle, label: 'Day-of assistance' },
+    icon: faLightbulb,
+    title: 'Tent Add-Ons',
+    blurb: 'Lighting and anchoring for any tent.',
+    desc: 'String and globe lighting turns a daytime tent into an evening venue. When your ground will not take stakes — pavement, patios, or protected turf — we anchor with concrete or water barrel weights instead. Full matching sidewalls, solid or windowed, come with every tent at no extra charge.',
+    rates: [
+      { label: "String / globe lighting — 10'×10' tent", price: '+$60.00' },
+      { label: "String / globe lighting — 30'×30' tent", price: '+$150.00' },
+      { label: 'Anchoring weights — concrete or water barrel', price: '+$20.00 per leg' },
     ],
-    cta: { label: 'Talk to Us', href: '/contact' },
+    tags: [
+      { icon: faShieldHalved, label: 'Sidewalls always included' },
+      { icon: faAnchor, label: 'No staking required' },
+      { icon: faLightbulb, label: 'Evening-ready' },
+    ],
+    cta: { label: 'Add Lighting', href: '/contact' },
+  },
+  {
+    icon: faStopwatch,
+    title: 'Scheduling & Access',
+    blurb: 'For tight windows and tricky sites.',
+    desc: 'Some venues are harder to load into than others, and some events run late. These surcharges cover the extra crew time so we can commit to your site and your clock — tell us about stairs, long carries, or a hard pickup time when you book.',
+    rates: [
+      { label: 'Stairs, elevators, or carry over 50 ft', price: '+$50.00' },
+      { label: 'After-hours pickup — after 9:00 PM', price: '+$150.00' },
+      { label: 'Guaranteed 2-hour delivery window', price: '+$75.00' },
+    ],
+    tags: [
+      { icon: faStairs, label: 'Long-carry sites' },
+      { icon: faMoon, label: 'Late-night pickup' },
+      { icon: faClock, label: 'Exact time window' },
+    ],
+    cta: { label: 'Discuss Your Site', href: '/contact' },
+  },
+  {
+    icon: faFileContract,
+    title: 'Booking & Protection',
+    blurb: 'One flat fee, one optional waiver.',
+    desc: 'A single agency fee applies to every booking — it covers administrative handling, contract processing, insurance, and holding your inventory off the calendar. The damage waiver is optional and checked by default: it covers accidental minor wear and tear, but not loss or negligence. Orders start at a $110 subtotal, counted before the agency fee and delivery.',
+    rates: [
+      { label: 'Agency fee — all bookings', price: '$75.00 flat' },
+      { label: 'Damage waiver — optional', price: '8% of rental subtotal' },
+      { label: 'Minimum order subtotal', price: '$110.00' },
+    ],
+    tags: [
+      { icon: faFileContract, label: 'Contract & insurance' },
+      { icon: faCalendarCheck, label: 'Order reserved' },
+      { icon: faTag, label: 'Waiver is optional' },
+    ],
+    cta: { label: 'Start a Booking', href: '/contact' },
   },
 ]
 
@@ -83,7 +135,7 @@ export default function ServicesSelector() {
             Explore Our Services
           </h2>
           <p className="mt-4 text-sm lg:text-base text-white/85 max-w-xl mx-auto">
-            Find the perfect solution for your next event.
+            Every fee, spelled out before you book.
           </p>
         </div>
       </div>
@@ -166,9 +218,23 @@ export default function ServicesSelector() {
                 ))}
               </ul>
               <p className="mt-4 text-sm opacity-70 max-w-prose">{selected.desc}</p>
-              <div className="mt-5">
+
+              {/* priced line items for the selected service */}
+              <ul className="mt-5 rounded-lg border border-blue-700/20 divide-y divide-blue-700/10">
+                {selected.rates.map(({ label, price }) => (
+                  <li key={label} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 px-4 py-3">
+                    <span className="text-sm">{label}</span>
+                    <span className="type-title text-sm font-bold text-red-800 whitespace-nowrap">{price}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-5 flex flex-wrap items-center gap-4">
                 <Link href={selected.cta.href} className="button is-danger is-responsive">
                   {selected.cta.label}
+                </Link>
+                <Link href="/packages" className="text-sm text-red-800 font-bold hover:underline">
+                  See package rates
                 </Link>
               </div>
             </div>

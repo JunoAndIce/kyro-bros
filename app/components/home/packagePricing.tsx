@@ -1,27 +1,28 @@
 import Link from 'next/link'
 
+/* Mirrors the package cards on /packages — base rates are for a 1-day rental. */
 const items = [
   {
-    title: 'Budget Friendly',
-    desc: "Affordable rentals that don't compromise quality. Perfect for small events.",
-    price: '$49',
+    title: 'Package C — Essential Pop-Up',
+    desc: "One 10'×10' pop-up tent, a banquet table, and 10 chairs. Right for cake tables, buffet stations, and vendor booths.",
+    price: '$110',
     featured: false,
   },
   {
-    title: 'Event Packages',
-    desc: 'Curated packages to fit your guest count and style. Save time and money.',
-    price: '$199',
+    title: 'Package B — Shade & Seating',
+    desc: "Two 10'×10' pop-up tents, 3 banquet tables, and 30 chairs. Built for backyard parties and graduations.",
+    price: '$250',
     featured: true,
   },
   {
-    title: 'Subscription Plans',
-    desc: 'Hosting events regularly? Ask about our monthly subscription options.',
-    price: null,
+    title: 'Package A — The Main Event',
+    desc: "Our 30'×30' tent with all 6 banquet tables and all 60 chairs. For weddings, reunions, and corporate events.",
+    price: '$750',
     featured: false,
   },
 ]
 
-export default function Subscription() {
+export default function PackagePricing() {
   return (
     <div className="py-18">
       <div className="container text-center px-3">
@@ -41,26 +42,28 @@ export default function Subscription() {
             >
               {featured && (
                 <span className="absolute -top-3 type-title text-xs font-bold uppercase tracking-wide bg-blue-700 text-white rounded-full px-4 py-1">
-                  Most Popular
+                  Mid-Size
                 </span>
               )}
               <p className="type-title font-bold text-sm uppercase">{title}</p>
               <p className="mt-3 text-sm opacity-70">{desc}</p>
               <div className="mt-auto pt-6">
-                {price ? (
-                  <>
-                    <p className={`type-title text-xs font-bold uppercase tracking-wide ${featured ? 'text-blue-700' : 'text-red-800'}`}>
-                      Starting at
-                    </p>
-                    <p className={`type-title text-3xl font-bold ${featured ? 'text-blue-700' : 'text-red-800'}`}>{price}</p>
-                  </>
-                ) : (
-                  <Link href="/packages" className="button is-link">Learn More</Link>
-                )}
+                <p className={`type-title text-xs font-bold uppercase tracking-wide ${featured ? 'text-blue-700' : 'text-red-800'}`}>
+                  1-day rate
+                </p>
+                <p className={`type-title text-3xl font-bold ${featured ? 'text-blue-700' : 'text-red-800'}`}>{price}</p>
               </div>
             </div>
           ))}
         </div>
+
+        <p className="mt-8 text-sm opacity-60">
+          Sidewalls included on every tent. Delivery, setup, and the $75 agency fee are added at quote —{' '}
+          <Link href="/packages" className="text-red-800 font-bold hover:underline">
+            see the full rate card
+          </Link>
+          .
+        </p>
       </div>
     </div>
   )

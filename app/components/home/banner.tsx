@@ -2,10 +2,10 @@ import React from 'react'
 import { DollarSign, Truck, Wrench, CalendarDays } from 'lucide-react'
 
 const items = [
-  { icon: DollarSign, title: 'Affordable Options',  desc: 'Great prices for every budget.' },
-  { icon: Truck,       title: 'Delivery Available',  desc: 'Fast & reliable delivery.' },
-  { icon: Wrench,      title: 'Setup Services',      desc: "We handle the setup so you don't have to." },
-  { icon: CalendarDays, title: 'Subscription Plans', desc: 'Perfect for repeat events.' },
+  { icon: DollarSign,   title: 'Packages From $110',  desc: 'Tent, table & chair bundles.' },
+  { icon: Truck,        title: 'Delivery Available',  desc: 'Flat-rate zones from $75.' },
+  { icon: Wrench,       title: 'Setup Services',      desc: 'Optional crew setup & teardown.' },
+  { icon: CalendarDays, title: 'Weekend Rates',       desc: 'Friday to Monday at 1.5× the day rate.' },
 ]
 
 export default function Banner() {

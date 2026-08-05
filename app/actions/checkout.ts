@@ -3,6 +3,7 @@
 import { stripe } from '@/prisma/backend/stripe'
 import { prisma } from '@/prisma/backend/prisma'
 import { redirect } from 'next/navigation'
+import { siteUrl } from '@/app/lib/site'
 
 // Call this when Kyro Bros confirms an inquiry and wants to collect a deposit.
 export async function createDepositCheckout(bookingId: string) {
@@ -32,8 +33,8 @@ export async function createDepositCheckout(bookingId: string) {
     metadata: {
       bookingId,       // passed to webhook so we know which booking was paid
     },
-    success_url: `${process.env.NEXT_PUBLIC_APP_URL}/booking/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url:  `${process.env.NEXT_PUBLIC_APP_URL}/booking/cancelled`,
+    success_url: `${siteUrl}/booking/success?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url:  `${siteUrl}/booking/cancelled`,
   })
 
   redirect(session.url!)

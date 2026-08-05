@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import Image, { type StaticImageData } from 'next/image'
 import Link from 'next/link'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import balloons from '@/public/merchandise/balloons.webp'
 import tables from '@/public/merchandise/tables.webp'
 import tents from '@/public/merchandise/tents.webp'
 import lawn from '@/public/merchandise/lawn.webp'
@@ -24,49 +23,40 @@ const ROTATE_MS = 6500
 
 const slides: Slide[] = [
   {
-    eyebrow: 'Subscription Plans',
-    accent: 'Party All Year,',
-    rest: 'One Simple Plan',
-    desc: 'Hosting events regularly? Our monthly plans keep tables, chairs, and decor on standby — with member pricing and priority booking.',
-    cta: { label: 'Explore Plans', href: '/packages' },
-    image: balloons,
-    imageAlt: 'Colorful balloon arrangement for an event',
-  },
-  {
-    eyebrow: 'Individual Supplies',
-    accent: 'Buy What You Need,',
-    rest: "Skip What You Don't",
-    desc: 'Balloons, decorations, tableware, and more — purchase party supplies individually, no bundle required.',
-    cta: { label: 'Shop Supplies', href: '/packages' },
-    image: tables,
-    imageAlt: 'Tables dressed and ready for a party',
+    eyebrow: 'Delivery & Pickup',
+    accent: 'Flat-Rate Zones,',
+    rest: 'Houston-Wide',
+    desc: '$75 flat within 15 miles of our HQ, $125 out to 30, then $125 plus $2.50 a mile beyond that. Stacked drop-off and pickup are included.',
+    cta: { label: 'Schedule Delivery', href: '/contact' },
+    image: chair,
+    imageAlt: 'White folding chairs delivered and set out on a lawn',
   },
   {
     eyebrow: 'Setup & Teardown',
     accent: 'We Set Up,',
     rest: 'You Celebrate',
-    desc: 'Our crew delivers, builds, and breaks down your event — tents, tables, chairs, and all — so you never lift a finger.',
+    desc: 'Stacked drop-off comes standard. Add full crew setup and teardown for $1 a chair and $3 a table, placed to your layout.',
     cta: { label: 'Book Our Crew', href: '/contact' },
     image: tents,
-    imageAlt: 'Event tent assembled on a lawn',
+    imageAlt: 'A large event tent set up on a lawn',
   },
   {
-    eyebrow: 'Delivery & Pickup',
-    accent: 'On Time,',
-    rest: 'Every Time',
-    desc: 'Reliable delivery and pickup across the Houston area, scheduled around your event — not the other way around.',
-    cta: { label: 'Schedule Delivery', href: '/contact' },
+    eyebrow: 'Tent Add-Ons',
+    accent: 'String Lights,',
+    rest: 'Sidewalls Included',
+    desc: 'Globe lighting runs $60 on a 10×10 and $150 on the 30×30, with anchoring weights at $20 a leg where stakes won’t go. Sidewalls are always free.',
+    cta: { label: 'Add Lighting', href: '/contact' },
     image: lawn,
-    imageAlt: 'Lawn games delivered for an outdoor event',
+    imageAlt: 'String lights strung above a backyard party',
   },
   {
-    eyebrow: 'Event Packages',
-    accent: 'One Booking,',
-    rest: 'Everything Included',
-    desc: 'Curated packages sized to your guest count — rentals, delivery, and setup bundled together to save you time and money.',
-    cta: { label: 'View Packages', href: '/packages' },
-    image: chair,
-    imageAlt: 'Rows of folding chairs arranged for an event',
+    eyebrow: 'Booking & Protection',
+    accent: 'One Flat Fee,',
+    rest: 'No Surprises',
+    desc: 'A $75 agency fee covers admin, contracts, insurance, and holding your order. The optional damage waiver adds 8% of the rental subtotal and covers accidental wear.',
+    cta: { label: 'Start a Booking', href: '/contact' },
+    image: tables,
+    imageAlt: 'A banquet table set with cake and drinks',
   },
 ]
 

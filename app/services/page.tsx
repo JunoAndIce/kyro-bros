@@ -8,7 +8,7 @@ import Banner from '../components/home/banner'
 export const metadata: Metadata = {
   title: 'Services',
   description:
-    'Subscription plans, individual party supplies, delivery, and full setup & teardown services for events across the Houston area.',
+    'Flat-rate delivery zones, full setup & teardown, tent lighting and anchoring, and booking fees for tent, table, and chair rentals across the Houston area.',
   alternates: { canonical: '/services' },
 }
 

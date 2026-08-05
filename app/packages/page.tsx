@@ -7,9 +7,9 @@ import Banner from '../components/home/banner'
 
 
 export const metadata: Metadata = {
-  title: 'Packages & Party Supplies',
+  title: 'Rental Packages & Pricing',
   description:
-    'Browse curated event packages, subscription plans, and individual party supplies from Kyro & Bros in Houston, TX.',
+    'Tent, table, and chair rental packages from $110 a day, plus à la carte rates, multi-day multipliers, and booking fees from Kyro & Bros in Houston, TX.',
   alternates: { canonical: '/packages' },
 }
 
@@ -17,7 +17,7 @@ export default function Products() {
   return (
     <main className="">
       <Navbar />
-      <h1 className="sr-only">Packages &amp; Party Supplies</h1>
+      <h1 className="sr-only">Rental Packages &amp; Pricing</h1>
       <PackagesHero />
       <Banner />
       <PackagesSelector />

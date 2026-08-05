@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import Image, { type StaticImageData } from 'next/image'
 import Link from 'next/link'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import balloons from '@/public/merchandise/balloons.webp'
 import tables from '@/public/merchandise/tables.webp'
 import tents from '@/public/merchandise/tents.webp'
 import chair from '@/public/merchandise/chair.webp'
@@ -24,49 +23,40 @@ const ROTATE_MS = 6500
 
 const slides: Slide[] = [
   {
-    eyebrow: 'Subscription Plans',
-    accent: 'Party All Year,',
-    rest: 'One Simple Plan',
-    desc: 'Hosting events on the regular? Our monthly plans keep tables, chairs, and decor on standby — with member pricing and priority booking every time.',
-    cta: { label: 'See Plans', href: '#options' },
-    image: balloons,
-    imageAlt: 'Colorful balloon arrangement for an event',
-  },
-  {
-    eyebrow: 'Individual Supplies',
-    accent: 'Buy What You Need,',
-    rest: "Skip What You Don't",
-    desc: 'Balloons, tables, chairs, tents, and decor — rent items individually with no bundle required. Perfect for filling the gaps in a party you already have planned.',
-    cta: { label: 'Shop À La Carte', href: '#options' },
-    image: tables,
-    imageAlt: 'Tables dressed and ready for a party',
-  },
-  {
-    eyebrow: 'Budget-Friendly Packages',
-    accent: 'Big Celebrations,',
-    rest: 'Small Price Tag',
-    desc: 'Affordable bundles of the essentials that never cut corners on quality. Ideal for backyard birthdays, small gatherings, and intimate get-togethers.',
-    cta: { label: 'View Budget Picks', href: '#options' },
-    image: chair,
-    imageAlt: 'Folding chairs arranged for a small gathering',
-  },
-  {
-    eyebrow: 'Event Packages',
-    accent: 'One Booking,',
-    rest: 'Everything Included',
-    desc: 'Curated packages sized to your guest count — rentals, delivery, and full setup bundled together so you book once and we handle the rest.',
-    cta: { label: 'Explore Packages', href: '#options' },
+    eyebrow: 'Package A — The Main Event',
+    accent: 'One 30×30 Tent,',
+    rest: '60 Seats Included',
+    desc: 'Our biggest setup in one booking: the 30×30 tent with sidewalls, all 6 banquet tables, and all 60 folding chairs. $750 for a 1-day rental.',
+    cta: { label: 'See What’s Included', href: '#options' },
     image: tents,
-    imageAlt: 'Event tent assembled on a lawn',
+    imageAlt: 'A large event tent set up on a lawn',
   },
   {
-    eyebrow: 'Build Your Own',
-    accent: 'Your Vision,',
-    rest: 'Your Package',
-    desc: 'Have something specific in mind? Tell us your theme, space, and budget and we’ll build a custom package designed entirely around your event.',
-    cta: { label: 'Start Customizing', href: '/contact' },
+    eyebrow: 'Package B — Mid-Size Shade & Seating',
+    accent: 'Two Pop-Up Tents,',
+    rest: '30 Seats Included',
+    desc: 'Two 10×10 pop-ups with sidewalls, 3 banquet tables, and 30 folding chairs — sized for backyard parties and graduations. $250 for a 1-day rental.',
+    cta: { label: 'View Package B', href: '#options' },
+    image: chair,
+    imageAlt: 'White folding chairs set out on a lawn',
+  },
+  {
+    eyebrow: 'Package C — Essential Pop-Up',
+    accent: 'One Tent, One Table,',
+    rest: 'Ten Chairs',
+    desc: 'The starter kit for cake tables, buffet stations, and vendor booths — one 10×10 pop-up with sidewalls, a banquet table, and 10 chairs. $110 for a 1-day rental.',
+    cta: { label: 'View Package C', href: '#options' },
+    image: tables,
+    imageAlt: 'A banquet table set with cake and drinks',
+  },
+  {
+    eyebrow: 'À La Carte Rentals',
+    accent: 'Build Your Own,',
+    rest: 'Item by Item',
+    desc: 'Tents from $75, banquet tables at $12 each, folding chairs at $2.50 each. $110 minimum order, and weekend rentals from Friday to Monday run just 1.5× the day rate.',
+    cta: { label: 'See À La Carte Rates', href: '#options' },
     image: lawn,
-    imageAlt: 'Decorated outdoor event space on a lawn',
+    imageAlt: 'String lights strung above a backyard party',
   },
 ]
 

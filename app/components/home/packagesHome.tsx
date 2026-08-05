@@ -4,42 +4,32 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Check } from 'lucide-react'
-import balloons from '@/public/merchandise/balloons-transparent.webp'
 import table from '@/public/merchandise/tables.webp'
 import tent from '@/public/merchandise/tents.webp'
 import chair from '@/public/merchandise/chair.webp'
-import lawn from '@/public/merchandise/lawn.webp'
 
+/* Counts here are our whole inventory, so they double as the booking caps. */
 const packages = [
   {
-    image: balloons,
-    title: 'Balloons',
-    desc: 'Add color and excitement to any celebration.',
-    stock: ['Balloon arches & columns', 'Number & letter balloons', 'Custom color garlands'],
+    image: tent,
+    title: 'Tents',
+    desc: 'Shade and shelter for any outdoor event.',
+    price: 'From $75 / day',
+    stock: ["1× 30'×30' frame tent", "3× 10'×10' pop-up canopies", 'Sidewalls included free'],
   },
   {
     image: table,
     title: 'Tables',
-    desc: 'Sturdy, stylish tables for guests of every size.',
-    stock: ['6 ft banquet tables', 'Round tables (seats 8)', 'Cocktail & kids tables'],
-  },
-  {
-    image: tent,
-    title: 'Tents',
-    desc: 'Reliable shelter and shade for indoor or outdoor events.',
-    stock: ['10×10 pop-up canopies', '20×20 frame tents', 'Sidewalls & weights'],
+    desc: 'Sturdy banquet tables for dining, cake, and buffet service.',
+    price: '$12 each / day',
+    stock: ['6× banquet tables', '6 ft / 8 ft standard', 'Setup available at $3 each'],
   },
   {
     image: chair,
     title: 'Chairs',
-    desc: 'Comfortable seating for any size gathering.',
-    stock: ['White folding chairs', 'Padded banquet chairs', 'Kid-sized chairs'],
-  },
-  {
-    image: lawn,
-    title: 'Lawn Decor',
-    desc: 'Decorative touches that transform your outdoor space.',
-    stock: ['Yard letters & signs', 'Balloon yard stakes', 'Themed lawn displays'],
+    desc: 'Comfortable seating for gatherings up to 60 guests.',
+    price: '$2.50 each / day',
+    stock: ['60× poly folding chairs', 'Indoor or outdoor', 'Setup available at $1 each'],
   },
 ]
 
@@ -133,7 +123,10 @@ export default function PackagesHome() {
 
             <div key={selected.title} className="fade-up mt-5">
               <p className="type-title text-xs font-bold uppercase tracking-wide text-red-800">In stock now</p>
-              <h3 className="type-title mt-1 text-lg font-bold uppercase">{selected.title}</h3>
+              <div className="mt-1 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h3 className="type-title text-lg font-bold uppercase">{selected.title}</h3>
+                <p className="type-title text-sm font-bold text-blue-700">{selected.price}</p>
+              </div>
               <p className="mt-1 text-sm opacity-70">{selected.desc}</p>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {selected.stock.map((item) => (
