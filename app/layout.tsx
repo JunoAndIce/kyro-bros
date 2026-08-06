@@ -4,6 +4,7 @@ import "./globals.css";
 import "bulma/css/bulma.min.css";
 import ThemeProvider from "@/app/components/themes/ThemeProvider";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { siteUrl, siteName, sitePhone, siteEmail, siteDescription } from "@/app/lib/site";
 
 const geistSans = Geist({
@@ -40,6 +41,17 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    // Without this, twitter:image falls back to the generated opengraph-image.
+    // Naming one here overrides that with the branded card. The path is
+    // relative because metadataBase above resolves it to an absolute URL, which
+    // the Twitter card spec requires. Note the twitter-image file convention
+    // couldn't be used instead — it accepts jpg/png/gif but not webp.
+    images: [
+      {
+        url: "/Kwesi-Business-Cards-Final.webp",
+        alt: "Kyro & Bros Party Supply Rentals",
+      },
+    ],
   },
 };
 
@@ -96,6 +108,7 @@ export default function RootLayout({
         />
         <ThemeProvider>{children}</ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
