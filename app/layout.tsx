@@ -27,6 +27,15 @@ const interTight = Inter_Tight({
   subsets: ["latin"],
 });
 
+/**
+ * Social share image, used for both og:image and twitter:image.
+ *
+ * Relative on purpose — metadataBase resolves it to the absolute URL both specs
+ * require. Setting it in config overrides the generated opengraph-image.tsx,
+ * which would otherwise supply both tags.
+ */
+const SHARE_IMAGE = "/Kwesi-Business-Cards-Final.webp";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -38,18 +47,25 @@ export const metadata: Metadata = {
     type: "website",
     siteName,
     locale: "en_US",
+    // Overrides the generated opengraph-image.tsx. Most preview surfaces
+    // (iMessage, Slack, Discord, Facebook, LinkedIn, WhatsApp) read og:image
+    // rather than twitter:image, so the branded card has to be set here too or
+    // they keep showing the generated text card.
+    images: [
+      {
+        url: SHARE_IMAGE,
+        alt: siteName,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    // Without this, twitter:image falls back to the generated opengraph-image.
-    // Naming one here overrides that with the branded card. The path is
-    // relative because metadataBase above resolves it to an absolute URL, which
-    // the Twitter card spec requires. Note the twitter-image file convention
-    // couldn't be used instead — it accepts jpg/png/gif but not webp.
+    // The twitter-image file convention couldn't be used here — it accepts
+    // jpg/png/gif but not webp, so a twitter-image.webp would be ignored.
     images: [
       {
-        url: "/Kwesi-Business-Cards-Final.webp",
-        alt: "Kyro & Bros Party Supply Rentals",
+        url: SHARE_IMAGE,
+        alt: siteName,
       },
     ],
   },
