@@ -7,6 +7,9 @@ import { ArrowRight, Check } from 'lucide-react'
 import table from '@/public/merchandise/tables.webp'
 import tent from '@/public/merchandise/tents.webp'
 import chair from '@/public/merchandise/chair.webp'
+import { INVENTORY, SETUP, usd } from '@/app/lib/pricing'
+
+const { tent30, tent10, table: banquet, chair: folding } = INVENTORY
 
 /* Counts here are our whole inventory, so they double as the booking caps. */
 const packages = [
@@ -14,22 +17,26 @@ const packages = [
     image: tent,
     title: 'Tents',
     desc: 'Shade and shelter for any outdoor event.',
-    price: 'From $75 / day',
-    stock: ["1× 30'×30' frame tent", "3× 10'×10' pop-up canopies", 'Sidewalls included free'],
+    price: `From ${usd(tent10.price)} / day`,
+    stock: [
+      `${tent30.count}× 30'×30' frame tent`,
+      `${tent10.count}× 10'×10' pop-up canopies`,
+      'Sidewalls included free',
+    ],
   },
   {
     image: table,
     title: 'Tables',
     desc: 'Sturdy banquet tables for dining, cake, and buffet service.',
-    price: '$12 each / day',
-    stock: ['6× banquet tables', '6 ft / 8 ft standard', 'Setup available at $3 each'],
+    price: `${usd(banquet.price)} each / day`,
+    stock: [`${banquet.count}× banquet tables`, banquet.note, `Setup available at ${usd(SETUP.table)} each`],
   },
   {
     image: chair,
     title: 'Chairs',
-    desc: 'Comfortable seating for gatherings up to 60 guests.',
-    price: '$2.50 each / day',
-    stock: ['60× poly folding chairs', 'Indoor or outdoor', 'Setup available at $1 each'],
+    desc: `Comfortable seating for gatherings up to ${folding.count} guests.`,
+    price: `${usd(folding.price)} each / day`,
+    stock: [`${folding.count}× poly folding chairs`, 'Indoor or outdoor', `Setup available at ${usd(SETUP.chair)} each`],
   },
 ]
 

@@ -1,26 +1,22 @@
 import Link from 'next/link'
+import { PACKAGES, FEES, usd } from '@/app/lib/pricing'
 
-/* Mirrors the package cards on /packages — base rates are for a 1-day rental. */
-const items = [
-  {
-    title: 'Package C — Essential Pop-Up',
-    desc: "One 10'×10' pop-up tent, a banquet table, and 10 chairs. Right for cake tables, buffet stations, and vendor booths.",
-    price: '$110',
-    featured: false,
-  },
-  {
-    title: 'Package B — Shade & Seating',
-    desc: "Two 10'×10' pop-up tents, 3 banquet tables, and 30 chairs. Built for backyard parties and graduations.",
-    price: '$250',
-    featured: true,
-  },
-  {
-    title: 'Package A — The Main Event',
-    desc: "Our 30'×30' tent with all 6 banquet tables and all 60 chairs. For weddings, reunions, and corporate events.",
-    price: '$750',
-    featured: false,
-  },
-]
+/* Mirrors the package cards on /packages. The copy is shorter here, but the
+   prices, order, and codes come from the shared source so the home page and
+   the packages page cannot drift apart. */
+const blurbs: Record<string, string> = {
+  'Package C': "One 10'×10' pop-up tent, a banquet table, and 10 chairs. Right for cake tables, buffet stations, and vendor booths.",
+  'Package B': "Two 10'×10' pop-up tents, 3 banquet tables, and 30 chairs. Built for backyard parties and graduations.",
+  'Package A': "Our 30'×30' tent with all 6 banquet tables and all 60 chairs. For weddings, reunions, and corporate events.",
+}
+
+const items = PACKAGES.map((pkg, i) => ({
+  title: `${pkg.code} — ${pkg.title}`,
+  desc: blurbs[pkg.code] ?? pkg.desc,
+  price: usd(pkg.price),
+  /* highlight the middle tier, whatever the list length */
+  featured: i === Math.floor(PACKAGES.length / 2),
+}))
 
 export default function PackagePricing() {
   return (
@@ -58,7 +54,7 @@ export default function PackagePricing() {
         </div>
 
         <p className="mt-8 text-sm opacity-60">
-          Sidewalls included on every tent. Delivery, setup, and the $75 agency fee are added at quote —{' '}
+          Sidewalls included on every tent. Delivery, setup, and the {usd(FEES.agency)} agency fee are added at quote —{' '}
           <Link href="/packages" className="text-red-800 font-bold hover:underline">
             see the full rate card
           </Link>

@@ -25,6 +25,16 @@ import {
   faImage,
 } from '@fortawesome/free-solid-svg-icons'
 import confetti from '@/public/confetti.webp'
+import {
+  DELIVERY,
+  SETUP,
+  ADD_ONS,
+  SURCHARGES,
+  FEES,
+  damageWaiverPct,
+  usd,
+  usdExact,
+} from '@/app/lib/pricing'
 
 // we ship FA's css ourselves (imported above) so it must not inject a duplicate at runtime
 config.autoAddCss = false
@@ -36,9 +46,12 @@ const services = [
     blurb: 'Flat-rate zones from our Houston HQ.',
     desc: 'We bring your rentals straight to your event — home, venue, park, or office — and haul everything away when it is over. Delivery is priced by how far your address sits from our Houston HQ, and drop-off with everything neatly stacked is included in that fee.',
     rates: [
-      { label: 'Zone 1 — 0 to 15 miles', price: '$75.00 flat' },
-      { label: 'Zone 2 — 16 to 30 miles', price: '$125.00 flat' },
-      { label: 'Zone 3 — over 30 miles', price: '$125.00 + $2.50 / extra mile' },
+      { label: DELIVERY.zone1.label, price: `${usdExact(DELIVERY.zone1.price)} flat` },
+      { label: DELIVERY.zone2.label, price: `${usdExact(DELIVERY.zone2.price)} flat` },
+      {
+        label: DELIVERY.zone3.label,
+        price: `${usdExact(DELIVERY.zone3.price)} + ${usdExact(DELIVERY.zone3.perExtraMile)} / extra mile`,
+      },
     ],
     tags: [
       { icon: faLocationDot, label: 'Houston-wide' },
@@ -53,8 +66,8 @@ const services = [
     blurb: 'Let the crew place every chair.',
     desc: 'Stacked drop-off comes standard at no extra cost. Add the labor service and our crew sets out your tables and chairs exactly where you want them, following your layout down to the last seat — then breaks it all down after the event.',
     rates: [
-      { label: 'Full setup & teardown — chairs', price: '+$1.00 per chair' },
-      { label: 'Full setup & teardown — tables', price: '+$3.00 per table' },
+      { label: 'Full setup & teardown — chairs', price: `+${usdExact(SETUP.chair)} per chair` },
+      { label: 'Full setup & teardown — tables', price: `+${usdExact(SETUP.table)} per table` },
     ],
     tags: [
       { icon: faRulerCombined, label: 'Your floor plan' },
@@ -69,9 +82,9 @@ const services = [
     blurb: 'Lighting and anchoring for any tent.',
     desc: 'String and globe lighting turns a daytime tent into an evening venue. When your ground will not take stakes — pavement, patios, or protected turf — we anchor with concrete or water barrel weights instead. Full matching sidewalls, solid or windowed, come with every tent at no extra charge.',
     rates: [
-      { label: "String / globe lighting — 10'×10' tent", price: '+$60.00' },
-      { label: "String / globe lighting — 30'×30' tent", price: '+$150.00' },
-      { label: 'Anchoring weights — concrete or water barrel', price: '+$20.00 per leg' },
+      { label: "String / globe lighting — 10'×10' tent", price: `+${usdExact(ADD_ONS.lighting10)}` },
+      { label: "String / globe lighting — 30'×30' tent", price: `+${usdExact(ADD_ONS.lighting30)}` },
+      { label: 'Anchoring weights — concrete or water barrel', price: `+${usdExact(ADD_ONS.anchorPerLeg)} per leg` },
     ],
     tags: [
       { icon: faShieldHalved, label: 'Sidewalls always included' },
@@ -86,9 +99,9 @@ const services = [
     blurb: 'For tight windows and tricky sites.',
     desc: 'Some venues are harder to load into than others, and some events run late. These surcharges cover the extra crew time so we can commit to your site and your clock — tell us about stairs, long carries, or a hard pickup time when you book.',
     rates: [
-      { label: 'Stairs, elevators, or carry over 50 ft', price: '+$50.00' },
-      { label: 'After-hours pickup — after 9:00 PM', price: '+$150.00' },
-      { label: 'Guaranteed 2-hour delivery window', price: '+$75.00' },
+      { label: 'Stairs, elevators, or carry over 50 ft', price: `+${usdExact(SURCHARGES.longCarry)}` },
+      { label: 'After-hours pickup — after 9:00 PM', price: `+${usdExact(SURCHARGES.afterHours)}` },
+      { label: 'Guaranteed 2-hour delivery window', price: `+${usdExact(SURCHARGES.exactWindow)}` },
     ],
     tags: [
       { icon: faStairs, label: 'Long-carry sites' },
@@ -101,11 +114,11 @@ const services = [
     icon: faFileContract,
     title: 'Booking & Protection',
     blurb: 'One flat fee, one optional waiver.',
-    desc: 'A single agency fee applies to every booking — it covers administrative handling, contract processing, insurance, and holding your inventory off the calendar. The damage waiver is optional and checked by default: it covers accidental minor wear and tear, but not loss or negligence. Orders start at a $110 subtotal, counted before the agency fee and delivery.',
+    desc: `A single agency fee applies to every booking — it covers administrative handling, contract processing, insurance, and holding your inventory off the calendar. The damage waiver is optional and checked by default: it covers accidental minor wear and tear, but not loss or negligence. Orders start at a ${usd(FEES.minimumOrder)} subtotal, counted before the agency fee and delivery.`,
     rates: [
-      { label: 'Agency fee — all bookings', price: '$75.00 flat' },
-      { label: 'Damage waiver — optional', price: '8% of rental subtotal' },
-      { label: 'Minimum order subtotal', price: '$110.00' },
+      { label: 'Agency fee — all bookings', price: `${usdExact(FEES.agency)} flat` },
+      { label: 'Damage waiver — optional', price: `${damageWaiverPct} of rental subtotal` },
+      { label: 'Minimum order subtotal', price: usdExact(FEES.minimumOrder) },
     ],
     tags: [
       { icon: faFileContract, label: 'Contract & insurance' },

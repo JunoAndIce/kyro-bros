@@ -1,75 +1,27 @@
 import Link from 'next/link'
 import { Check, Star, Users, ShieldCheck, Info } from 'lucide-react'
-
-type Pkg = {
-  code: string
-  title: string
-  desc: string
-  includes: string[]
-  capacity: string
-  /* Base rate for a 1-day (24-hour) rental. Longer rentals scale by `durations`. */
-  price: string
-  badge?: string
-  featured?: boolean
-}
-
-/* Our entire inventory is 1× 30'×30' tent, 3× 10'×10' pop-ups, 6 banquet tables,
-   and 60 folding chairs — the packages and the à la carte caps below both come
-   straight off those counts. */
-const packages: Pkg[] = [
-  {
-    code: 'Package C',
-    title: 'Essential Pop-Up',
-    desc: 'Sized for small gatherings, cake and buffet stations, or a single vendor booth.',
-    includes: ["1× 10'×10' pop-up tent", '1× banquet table', '10× folding chairs'],
-    capacity: 'Up to 10 seated guests',
-    price: '$110',
-  },
-  {
-    code: 'Package B',
-    title: 'Mid-Size Shade & Seating',
-    desc: 'Built for medium backyard parties and graduation events.',
-    includes: ["2× 10'×10' pop-up tents", '3× banquet tables', '30× folding chairs'],
-    capacity: 'Up to 30 seated guests',
-    price: '$250',
-  },
-  {
-    code: 'Package A',
-    title: 'The Main Event',
-    desc: 'Our big tent with every table and chair we own — for weddings, large family reunions, and corporate gatherings.',
-    includes: ["1× 30'×30' frame tent", '6× banquet tables', '60× folding chairs'],
-    capacity: 'Up to 60 seated guests',
-    price: '$750',
-    badge: 'Largest Package',
-    featured: true,
-  },
-]
-
-const alaCarte = [
-  { item: "30'×30' tent", price: '$550.00', unit: 'per rental', note: 'Sidewalls included', stock: '1' },
-  { item: "10'×10' pop-up tent", price: '$75.00', unit: 'per rental', note: 'Sidewalls included', stock: '3' },
-  { item: 'Banquet table', price: '$12.00', unit: 'each', note: '6 ft / 8 ft standard', stock: '6' },
-  { item: 'Folding chair', price: '$2.50', unit: 'each', note: 'Poly folding chair', stock: '60' },
-]
-
-const durations = [
-  { label: '1 day (standard event)', rate: '1.0×', note: 'Base rate' },
-  { label: 'Weekend — Friday delivery to Monday pickup', rate: '1.5×', note: 'Best value for weekend events' },
-  { label: '3–4 days', rate: '2.0×', note: 'Mid-week or multi-day event' },
-  { label: 'Full week (7 days)', rate: '2.5×', note: 'Extended event rate' },
-]
+import {
+  PACKAGES,
+  ALA_CARTE,
+  DURATIONS,
+  FEES,
+  damageWaiverPct,
+  usd,
+  usdExact,
+  multiplier,
+} from '@/app/lib/pricing'
 
 const fees = [
   {
     icon: Info,
     label: 'Agency fee',
-    amount: '$75.00 flat',
+    amount: `${usdExact(FEES.agency)} flat`,
     desc: 'Applied to every booking. Covers administrative handling, contract processing, insurance, and reserving your order.',
   },
   {
     icon: ShieldCheck,
     label: 'Damage waiver',
-    amount: '8% of rental subtotal',
+    amount: `${damageWaiverPct} of rental subtotal`,
     desc: 'Optional and checked by default. Calculated on the rental subtotal after the duration multiplier, and covers accidental minor wear and tear — not loss or negligence.',
   },
 ]
@@ -94,7 +46,7 @@ export default function PackagesSelector() {
             Bulma's own `.grid` (loaded after Tailwind), so we only switch to grid at
             the sm/lg breakpoints, whose prefixed class names Bulma doesn't define. */}
         <div className="mt-12 flex flex-col gap-5 sm:grid sm:grid-cols-2 lg:grid-cols-3">
-          {packages.map(({ code, title, desc, includes, capacity, price, badge, featured }) => {
+          {PACKAGES.map(({ code, title, desc, includes, capacity, price, badge, featured }) => {
             const accent = featured ? 'text-blue-700' : 'text-red-800'
             return (
               <div
@@ -130,7 +82,7 @@ export default function PackagesSelector() {
                     }`}
                   >
                     <Users className="size-3 shrink-0" />
-                    {capacity}
+                    Up to {capacity} seated guests
                   </span>
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-700/20 px-3 py-1 text-xs">
                     <Check className="size-3 shrink-0 text-red-800" />
@@ -141,7 +93,7 @@ export default function PackagesSelector() {
                 <div className="mt-auto pt-6">
                   <p className="type-title text-xs font-bold uppercase tracking-wide opacity-60">1-day base rate</p>
                   <p className={`type-title font-bold leading-none text-3xl ${accent}`}>
-                    {price}
+                    {usd(price)}
                     <span className="ml-1.5 text-xs font-normal opacity-60">/ 24 hours</span>
                   </p>
                   <Link
@@ -179,15 +131,15 @@ export default function PackagesSelector() {
                 </tr>
               </thead>
               <tbody>
-                {alaCarte.map(({ item, price, unit, note, stock }) => (
-                  <tr key={item} className="border-b border-blue-700/10 last:border-0">
-                    <td className="px-4! py-3! align-middle! font-bold">{item}</td>
+                {ALA_CARTE.map(({ label, price, unit, note, count }) => (
+                  <tr key={label} className="border-b border-blue-700/10 last:border-0">
+                    <td className="px-4! py-3! align-middle! font-bold">{label}</td>
                     <td className="px-4! py-3! align-middle!">
-                      <span className="type-title font-bold text-red-800">{price}</span>
+                      <span className="type-title font-bold text-red-800">{usdExact(price)}</span>
                       <span className="ml-1.5 text-xs opacity-60">{unit}</span>
                     </td>
                     <td className="px-4! py-3! align-middle! opacity-70">{note}</td>
-                    <td className="px-4! py-3! align-middle! opacity-70">{stock}</td>
+                    <td className="px-4! py-3! align-middle! opacity-70">{count}</td>
                   </tr>
                 ))}
               </tbody>
@@ -195,8 +147,8 @@ export default function PackagesSelector() {
           </div>
 
           <p className="mt-4 text-sm opacity-70">
-            <span className="font-bold">$110.00 minimum order subtotal</span>, calculated before the agency fee and
-            delivery. Every package above clears it.
+            <span className="font-bold">{usdExact(FEES.minimumOrder)} minimum order subtotal</span>, calculated before
+            the agency fee and delivery. Every package above clears it.
           </p>
         </div>
 
@@ -221,10 +173,10 @@ export default function PackagesSelector() {
                 </tr>
               </thead>
               <tbody>
-                {durations.map(({ label, rate, note }) => (
+                {DURATIONS.map(({ label, rate, note }) => (
                   <tr key={label} className="border-b border-blue-700/10 last:border-0">
                     <td className="px-4! py-3! align-middle! font-bold">{label}</td>
-                    <td className="type-title px-4! py-3! align-middle! font-bold text-red-800">{rate}</td>
+                    <td className="type-title px-4! py-3! align-middle! font-bold text-red-800">{multiplier(rate)}</td>
                     <td className="px-4! py-3! align-middle! opacity-70">{note}</td>
                   </tr>
                 ))}
@@ -256,8 +208,8 @@ export default function PackagesSelector() {
           <div className="mt-6 rounded-lg border border-dashed border-blue-700/30 bg-foreground/5 px-6 py-5">
             <p className="type-title text-xs font-bold uppercase tracking-wide opacity-60">The math</p>
             <p className="mt-2 font-mono text-xs sm:text-sm leading-relaxed">
-              (package or à la carte total × duration multiplier) + $75 agency fee + delivery fee + add-ons + damage
-              waiver = your total quote
+              (package or à la carte total × duration multiplier) + {usd(FEES.agency)} agency fee + delivery fee +
+              add-ons + damage waiver = your total quote
             </p>
             <p className="mt-3 text-xs opacity-60">
               The multiplier applies to inventory only — the agency fee, delivery, and add-ons are each charged once, no

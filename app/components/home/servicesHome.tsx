@@ -3,11 +3,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Truck, Wrench, Lightbulb } from 'lucide-react'
 import confetti from '@/public/confetti.webp'
+import { DELIVERY_FROM, SETUP, ADD_ONS, usd } from '@/app/lib/pricing'
 
 const items = [
-  { icon: Truck, title: 'Delivery & Pickup', desc: 'Flat-rate zones from $75, stacked drop-off included.' },
-  { icon: Wrench, title: 'Setup & Teardown', desc: 'Optional crew service at $1 a chair and $3 a table.' },
-  { icon: Lightbulb, title: 'Tent Add-Ons', desc: 'String lighting from $60 and anchoring at $20 a leg.' },
+  { icon: Truck, title: 'Delivery & Pickup', desc: `Flat-rate zones from ${usd(DELIVERY_FROM)}, stacked drop-off included.` },
+  { icon: Wrench, title: 'Setup & Teardown', desc: `Optional crew service at ${usd(SETUP.chair)} a chair and ${usd(SETUP.table)} a table.` },
+  { icon: Lightbulb, title: 'Tent Add-Ons', desc: `String lighting from ${usd(ADD_ONS.lighting10)} and anchoring at ${usd(ADD_ONS.anchorPerLeg)} a leg.` },
 ]
 
 export default function ServicesHome() {

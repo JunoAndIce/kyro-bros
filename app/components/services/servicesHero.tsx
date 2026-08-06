@@ -8,6 +8,7 @@ import tables from '@/public/merchandise/tables.webp'
 import tents from '@/public/merchandise/tents.webp'
 import lawn from '@/public/merchandise/lawn.webp'
 import chair from '@/public/merchandise/chair.webp'
+import { DELIVERY, SETUP, ADD_ONS, FEES, damageWaiverPct, usd } from '@/app/lib/pricing'
 
 type Slide = {
   eyebrow: string
@@ -26,7 +27,7 @@ const slides: Slide[] = [
     eyebrow: 'Delivery & Pickup',
     accent: 'Flat-Rate Zones,',
     rest: 'Houston-Wide',
-    desc: '$75 flat within 15 miles of our HQ, $125 out to 30, then $125 plus $2.50 a mile beyond that. Stacked drop-off and pickup are included.',
+    desc: `${usd(DELIVERY.zone1.price)} flat within 15 miles of our HQ, ${usd(DELIVERY.zone2.price)} out to 30, then ${usd(DELIVERY.zone3.price)} plus ${usd(DELIVERY.zone3.perExtraMile)} a mile beyond that. Stacked drop-off and pickup are included.`,
     cta: { label: 'Schedule Delivery', href: '/contact' },
     image: chair,
     imageAlt: 'White folding chairs delivered and set out on a lawn',
@@ -35,7 +36,7 @@ const slides: Slide[] = [
     eyebrow: 'Setup & Teardown',
     accent: 'We Set Up,',
     rest: 'You Celebrate',
-    desc: 'Stacked drop-off comes standard. Add full crew setup and teardown for $1 a chair and $3 a table, placed to your layout.',
+    desc: `Stacked drop-off comes standard. Add full crew setup and teardown for ${usd(SETUP.chair)} a chair and ${usd(SETUP.table)} a table, placed to your layout.`,
     cta: { label: 'Book Our Crew', href: '/contact' },
     image: tents,
     imageAlt: 'A large event tent set up on a lawn',
@@ -44,7 +45,7 @@ const slides: Slide[] = [
     eyebrow: 'Tent Add-Ons',
     accent: 'String Lights,',
     rest: 'Sidewalls Included',
-    desc: 'Globe lighting runs $60 on a 10×10 and $150 on the 30×30, with anchoring weights at $20 a leg where stakes won’t go. Sidewalls are always free.',
+    desc: `Globe lighting runs ${usd(ADD_ONS.lighting10)} on a 10×10 and ${usd(ADD_ONS.lighting30)} on the 30×30, with anchoring weights at ${usd(ADD_ONS.anchorPerLeg)} a leg where stakes won’t go. Sidewalls are always free.`,
     cta: { label: 'Add Lighting', href: '/contact' },
     image: lawn,
     imageAlt: 'String lights strung above a backyard party',
@@ -53,7 +54,7 @@ const slides: Slide[] = [
     eyebrow: 'Booking & Protection',
     accent: 'One Flat Fee,',
     rest: 'No Surprises',
-    desc: 'A $75 agency fee covers admin, contracts, insurance, and holding your order. The optional damage waiver adds 8% of the rental subtotal and covers accidental wear.',
+    desc: `A ${usd(FEES.agency)} agency fee covers admin, contracts, insurance, and holding your order. The optional damage waiver adds ${damageWaiverPct} of the rental subtotal and covers accidental wear.`,
     cta: { label: 'Start a Booking', href: '/contact' },
     image: tables,
     imageAlt: 'A banquet table set with cake and drinks',

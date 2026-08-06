@@ -1,6 +1,20 @@
 import Image from 'next/image'
 import { ChevronDown } from 'lucide-react'
 import confetti from '@/public/confetti.webp'
+import {
+  PACKAGES,
+  INVENTORY,
+  DELIVERY,
+  SETUP,
+  ADD_ONS,
+  FEES,
+  DURATIONS,
+  damageWaiverPct,
+  usd,
+  multiplier,
+} from '@/app/lib/pricing'
+
+const seats = (code: string) => PACKAGES.find(p => p.code === code)!.capacity
 
 type Faq = {
   q: string
@@ -16,15 +30,15 @@ type Faq = {
 const faqs: Faq[] = [
   {
     q: 'Do you deliver, and which areas do you cover?',
-    a: 'We deliver across the Houston area, priced by distance from our HQ: $75 flat within 15 miles, $125 from 16 to 30 miles, and $125 plus $2.50 per mile beyond 30. That fee covers pickup after your event too, and everything arrives dropped off and neatly stacked at no extra charge.',
+    a: `We deliver across the Houston area, priced by distance from our HQ: ${usd(DELIVERY.zone1.price)} flat within 15 miles, ${usd(DELIVERY.zone2.price)} from 16 to 30 miles, and ${usd(DELIVERY.zone3.price)} plus ${usd(DELIVERY.zone3.perExtraMile)} per mile beyond 30. That fee covers pickup after your event too, and everything arrives dropped off and neatly stacked at no extra charge.`,
   },
   {
     q: 'How many guests can you seat?',
-    a: 'Up to 60 seated guests — that is our full stock of 60 folding chairs and 6 banquet tables, which is exactly what Package A includes. Package B seats up to 30 and Package C up to 10.',
+    a: `Up to ${seats('Package A')} seated guests — that is our full stock of ${INVENTORY.chair.count} folding chairs and ${INVENTORY.table.count} banquet tables, which is exactly what Package A includes. Package B seats up to ${seats('Package B')} and Package C up to ${seats('Package C')}.`,
   },
   {
     q: 'Is setup and teardown included in my rental?',
-    a: 'Stacked drop-off and pickup are included in your delivery fee. If you would rather not place anything yourself, add our labor service and the crew sets out and breaks down every piece to your layout — $1 per chair and $3 per table.',
+    a: `Stacked drop-off and pickup are included in your delivery fee. If you would rather not place anything yourself, add our labor service and the crew sets out and breaks down every piece to your layout — ${usd(SETUP.chair)} per chair and ${usd(SETUP.table)} per table.`,
   },
   {
     q: 'Do your tents come with sidewalls?',
@@ -32,19 +46,19 @@ const faqs: Faq[] = [
   },
   {
     q: 'How long is a standard rental, and can I keep it longer?',
-    a: 'Base prices cover a 1-day, 24-hour rental. Longer bookings multiply the equipment cost: a Friday-to-Monday weekend is 1.5x, three to four days is 2.0x, and a full week is 2.5x. The multiplier applies to the equipment only — the agency fee, delivery, and any add-ons are each charged once, no matter how long you keep the order.',
+    a: `Base prices cover a 1-day, 24-hour rental. Longer bookings multiply the equipment cost: a Friday-to-Monday weekend is ${multiplier(DURATIONS[1].rate)}, three to four days is ${multiplier(DURATIONS[2].rate)}, and a full week is ${multiplier(DURATIONS[3].rate)}. The multiplier applies to the equipment only — the agency fee, delivery, and any add-ons are each charged once, no matter how long you keep the order.`,
   },
   {
     q: 'Is there a minimum order?',
-    a: 'Yes — $110, counted before the agency fee and delivery. All three of our packages clear it, so the minimum really only comes into play when you are building a custom order item by item.',
+    a: `Yes — ${usd(FEES.minimumOrder)}, counted before the agency fee and delivery. All ${PACKAGES.length} of our packages clear it, so the minimum really only comes into play when you are building a custom order item by item.`,
   },
   {
     q: 'What else shows up on my quote?',
-    a: 'A $75 agency fee applies to every booking and covers administrative handling, contract processing, insurance, and reserving your equipment. Delivery is added by zone. The 8% damage waiver is optional — it is checked by default and covers accidental minor wear and tear, though not loss or negligence.',
+    a: `A ${usd(FEES.agency)} agency fee applies to every booking and covers administrative handling, contract processing, insurance, and reserving your equipment. Delivery is added by zone. The ${damageWaiverPct} damage waiver is optional — it is checked by default and covers accidental minor wear and tear, though not loss or negligence.`,
   },
   {
     q: 'What if we cannot stake into the ground?',
-    a: 'Not a problem. Where staking is not an option — pavement, patios, or turf you would rather not puncture — we anchor with concrete or water barrel weights instead, at $20 per tent leg.',
+    a: `Not a problem. Where staking is not an option — pavement, patios, or turf you would rather not puncture — we anchor with concrete or water barrel weights instead, at ${usd(ADD_ONS.anchorPerLeg)} per tent leg.`,
   },
   {
     q: 'How far in advance should I book?',
