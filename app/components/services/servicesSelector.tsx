@@ -22,9 +22,13 @@ import {
   faStairs,
   faMoon,
   faTag,
-  faImage,
 } from '@fortawesome/free-solid-svg-icons'
 import confetti from '@/public/confetti.webp'
+import deliveryImg from '@/public/delivery.webp'
+import setupImg from '@/public/setup.webp'
+import tentAddonImg from '@/public/tent-addon.webp'
+import scheduleImg from '@/public/schedule.webp'
+import bookingImg from '@/public/booking.webp'
 import {
   DELIVERY,
   SETUP,
@@ -44,6 +48,8 @@ const services = [
     icon: faTruckFast,
     title: 'Delivery & Pickup',
     blurb: 'Flat-rate zones from our Houston HQ.',
+    image: deliveryImg,
+    imageAlt: 'A delivery truck on the highway',
     desc: 'We bring your rentals straight to your event — home, venue, park, or office — and haul everything away when it is over. Delivery is priced by how far your address sits from our Houston HQ, and drop-off with everything neatly stacked is included in that fee.',
     rates: [
       { label: DELIVERY.zone1.label, price: `${usdExact(DELIVERY.zone1.price)} flat` },
@@ -64,6 +70,8 @@ const services = [
     icon: faScrewdriverWrench,
     title: 'Setup & Teardown',
     blurb: 'Let the crew place every chair.',
+    image: setupImg,
+    imageAlt: 'A white frame tent set up with draped tables, chairs, and bunting for an outdoor ceremony',
     desc: 'Stacked drop-off comes standard at no extra cost. Add the labor service and our crew sets out your tables and chairs exactly where you want them, following your layout down to the last seat — then breaks it all down after the event.',
     rates: [
       { label: 'Full setup & teardown — chairs', price: `+${usdExact(SETUP.chair)} per chair` },
@@ -80,6 +88,8 @@ const services = [
     icon: faLightbulb,
     title: 'Tent Add-Ons',
     blurb: 'Lighting and anchoring for any tent.',
+    image: tentAddonImg,
+    imageAlt: 'Pop-up canopy tents over long dining tables, strung with coloured globe lights',
     desc: 'String and globe lighting turns a daytime tent into an evening venue. When your ground will not take stakes — pavement, patios, or protected turf — we anchor with concrete or water barrel weights instead. Full matching sidewalls, solid or windowed, come with every tent at no extra charge.',
     rates: [
       { label: "String / globe lighting — 10'×10' tent", price: `+${usdExact(ADD_ONS.lighting10)}` },
@@ -97,6 +107,8 @@ const services = [
     icon: faStopwatch,
     title: 'Scheduling & Access',
     blurb: 'For tight windows and tricky sites.',
+    image: scheduleImg,
+    imageAlt: 'Two people in business attire talking inside an event venue',
     desc: 'Some venues are harder to load into than others, and some events run late. These surcharges cover the extra crew time so we can commit to your site and your clock — tell us about stairs, long carries, or a hard pickup time when you book.',
     rates: [
       { label: 'Stairs, elevators, or carry over 50 ft', price: `+${usdExact(SURCHARGES.longCarry)}` },
@@ -114,6 +126,8 @@ const services = [
     icon: faFileContract,
     title: 'Booking & Protection',
     blurb: 'One flat fee, one optional waiver.',
+    image: bookingImg,
+    imageAlt: 'Two people shaking hands over a completed agreement',
     desc: `A single agency fee applies to every booking — it covers administrative handling, contract processing, insurance, and holding your inventory off the calendar. The damage waiver is optional and checked by default: it covers accidental minor wear and tear, but not loss or negligence. Orders start at a ${usd(FEES.minimumOrder)} subtotal, counted before the agency fee and delivery.`,
     rates: [
       { label: 'Agency fee — all bookings', price: `${usdExact(FEES.agency)} flat` },
@@ -207,14 +221,25 @@ export default function ServicesSelector() {
             ))}
           </div>
 
-          {/* preview: image placeholder + details for the selected service */}
+          {/* preview: photo + details for the selected service */}
           <div className="lg:col-span-7">
-            {/* placeholder until service photos are ready */}
-            <div className="relative aspect-3/2 lg:aspect-16/10 overflow-hidden rounded border-2 border-dashed border-blue-700/20 bg-foreground/5 flex items-center justify-center">
-              <div className="text-center opacity-40">
-                <FontAwesomeIcon icon={faImage} className="text-3xl" />
-                <p className="type-title mt-2 text-xs font-bold tracking-wide">Image coming soon</p>
-              </div>
+            {/* All five stay mounted and crossfade on opacity, which avoids a
+                layout shift when switching tabs. The inactive ones are hidden
+                from assistive tech so their alt text isn't announced too. */}
+            <div className="relative aspect-3/2 lg:aspect-16/10 overflow-hidden rounded">
+              {services.map(({ title, image, imageAlt }, i) => (
+                <Image
+                  key={title}
+                  src={image}
+                  alt={imageAlt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  aria-hidden={i !== active}
+                  className={`object-cover transition-opacity duration-500 ${
+                    i === active ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
+              ))}
             </div>
 
             <div key={selected.title} className="fade-up mt-5">
